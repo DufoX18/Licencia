@@ -4,6 +4,8 @@
  */
 package licencia;
 
+import DaoBD.DaoBD;
+
 /**
  *
  * @author Usuario
@@ -15,6 +17,9 @@ public class Licencia {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        DaoBD d = new DaoBD();
+        d.connect();
+    
     }
     
 }
