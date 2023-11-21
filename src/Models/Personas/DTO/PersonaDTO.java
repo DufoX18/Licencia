@@ -1,8 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package Models.Personas;
+package Models.Personas.DTO;
 
 import java.util.Date;
 
@@ -10,7 +10,8 @@ import java.util.Date;
  *
  * @author Usuario
  */
-public abstract class Persona {
+public abstract class PersonaDTO {
+
     private int id;
     private String cedula;
     private String nombre;
@@ -42,19 +43,7 @@ public abstract class Persona {
         return correo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public Persona(int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
+    public PersonaDTO(int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
         this.id = id;
         this.cedula = cedula;
         this.nombre = nombre;
@@ -62,6 +51,5 @@ public abstract class Persona {
         this.telefono = telefono;
         this.correo = correo;
     }
-    
-    
+
 }

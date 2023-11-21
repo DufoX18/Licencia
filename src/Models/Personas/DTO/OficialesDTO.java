@@ -4,10 +4,27 @@
  */
 package Models.Personas.DTO;
 
+import java.util.Date;
+
 /**
  *
  * @author Usuario
  */
-public class OficialesDTO {
-    
+public class OficialesDTO extends PersonaDTO {
+
+    private double salario;
+
+    public OficialesDTO(int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
+        super(id, cedula, nombre, fechaNacimiento, telefono, correo);
+    }
+
+    public OficialesDTO(double salario, int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
+        super(id, cedula, nombre, fechaNacimiento, telefono, correo);
+        this.salario = salario;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
 }

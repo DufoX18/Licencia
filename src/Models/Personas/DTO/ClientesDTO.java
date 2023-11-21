@@ -4,10 +4,16 @@
  */
 package Models.Personas.DTO;
 
+import java.util.Date;
+
 /**
  *
  * @author Usuario
  */
-public class ClientesDTO {
+public class ClientesDTO extends PersonaDTO{
+    
+    public ClientesDTO(int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
+        super(id, cedula, nombre, fechaNacimiento, telefono, correo);
+    }
     
 }

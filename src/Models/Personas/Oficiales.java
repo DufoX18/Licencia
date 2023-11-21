@@ -4,10 +4,31 @@
  */
 package Models.Personas;
 
+import java.util.Date;
+
 /**
  *
  * @author Usuario
  */
-public class Oficiales {
-    
+public class Oficiales extends Persona {
+
+    private double salario;
+
+    public Oficiales(int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
+        super(id, cedula, nombre, fechaNacimiento, telefono, correo);
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+    public Oficiales(double salario, int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
+        super(id, cedula, nombre, fechaNacimiento, telefono, correo);
+        this.salario = salario;
+    }
+
 }

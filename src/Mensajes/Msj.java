@@ -2,15 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package Controller;
-
-import CRUD.Crud;
+package Mensajes;
 
 /**
  *
  * @author Usuario
- * @param <Class>
  */
-public interface Controller<Class> extends Crud<Class> {
+public interface Msj<Class> {
+
+    public void display(Class obj);
+
+    public void displaymessage(String obj);
 
 }
