@@ -4,10 +4,49 @@
  */
 package Controller.Agenda;
 
+import Controller.Controller;
+import Mensajes.Msj;
+import Models.Agenda.Pruebas;
+import Models.DAO.Dao;
+import java.util.List;
+
 /**
  *
  * @author Usuario
  */
-public class ControllerPruebas {
+public class ControllerPruebas implements Controller<Pruebas> {
+    private Dao dao;
+    private Msj msj;
+
+    public ControllerPruebas(Dao dao, Msj msj) {
+        this.dao = dao;
+        this.msj = msj;
+    }
+    
+    
+    @Override
+    public boolean create(Pruebas obj) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Pruebas read(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Pruebas> readAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean update(Pruebas obj) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean delete(Pruebas obj) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

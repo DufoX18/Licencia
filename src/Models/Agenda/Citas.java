@@ -4,10 +4,40 @@
  */
 package Models.Agenda;
 
+import Models.Personas.Clientes;
+import java.util.Date;
+
 /**
  *
  * @author Usuario
  */
-public class Citas {
+public class Citas extends Agenda {
+    private Clientes cliente;
+    private boolean activa;
+    public Citas(int id, Date fecha, String hora) {
+        super(id, fecha, hora);
+    }
+
+    public Clientes getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
+    }
+
+    public boolean isActiva() {
+        return activa;
+    }
+
+    public void setActiva(boolean activa) {
+        this.activa = activa;
+    }
+
+    public Citas(Clientes cliente, boolean activa, int id, Date fecha, String hora) {
+        super(id, fecha, hora);
+        this.cliente = cliente;
+        this.activa = true;
+    }
     
 }

@@ -4,10 +4,32 @@
  */
 package Models.Agenda.DTO;
 
+import Models.Personas.Clientes;
+import java.util.Date;
+
 /**
  *
  * @author Usuario
  */
-public class CitasDTO {
+public class CitasDTO extends AgendaDTO {
+    private Clientes cliente;
+    private boolean activa;
+    public CitasDTO(int id, Date fecha, String hora) {
+        super(id, fecha, hora);
+    }
+
+    public Clientes getCliente() {
+        return cliente;
+    }
+
+    public boolean isActiva() {
+        return activa;
+    }
+
+    public CitasDTO(Clientes cliente, boolean activa, int id, Date fecha, String hora) {
+        super(id, fecha, hora);
+        this.cliente = cliente;
+        this.activa = activa;
+    }
     
 }
