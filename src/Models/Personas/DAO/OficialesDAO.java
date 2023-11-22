@@ -42,13 +42,25 @@ public class OficialesDAO implements Dao<OficialesDTO> {
     }
 
     @Override
-    public OficialesDTO actulizar(OficialesDTO obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public OficialesDTO actulizar(OficialesDTO o) {
+        DaoBD bd = new DaoBD(); // Manejo de excepciones
+        bd.createStatement("call ActualizarOficial (?, ?, ?, ?,?)");
+        bd.set(1, o.getNombre());
+        bd.set(2, o.getTelefono());
+        bd.set(3, o.getCorreo());
+        bd.set(4, o.getSalario());
+        bd.set(5, o.getId());
+        bd.execute(false);
+        return o;
     }
 
     @Override
-    public OficialesDTO eliminar(OficialesDTO obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public OficialesDTO eliminar(OficialesDTO o) {
+        DaoBD bd = new DaoBD();
+        bd.createStatement("call EliminarOficial(?)");
+        bd.set(1, o.getId());
+        bd.execute(false);
+        return o;
     }
 
 }
