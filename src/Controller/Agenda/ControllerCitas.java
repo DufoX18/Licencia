@@ -14,7 +14,8 @@ import java.util.List;
  *
  * @author Usuario
  */
-public class ControllerCitas implements Controller<Citas>{
+public class ControllerCitas implements Controller<Citas> {
+
     private Dao dao;
     private Msj msj;
 
@@ -22,31 +23,30 @@ public class ControllerCitas implements Controller<Citas>{
         this.dao = dao;
         this.msj = msj;
     }
-    
-    
-    
+
     @Override
-    public boolean create(Citas obj) {
+    public boolean insertar(Citas obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Citas read(String id) {
+    public Citas buscar(String id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<Citas> readAll() {
+    public List<Citas> buscarTodo() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean update(Citas obj) {
+    public boolean actulizar(Citas obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean delete(Citas obj) {
+    public boolean eliminar(Citas obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 }

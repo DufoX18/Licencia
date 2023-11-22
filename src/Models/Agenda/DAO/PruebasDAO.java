@@ -15,28 +15,29 @@ import java.util.List;
 public class PruebasDAO implements Dao<PruebasDTO> {
 
     @Override
-    public boolean create(PruebasDTO obj) {
+    public boolean insertar(PruebasDTO obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public PruebasDTO read(String id) {
+    public PruebasDTO buscar(String id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<PruebasDTO> readAll() {
+    public List<PruebasDTO> buscarTodo() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean update(PruebasDTO obj) {
+    public boolean actulizar(PruebasDTO obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean delete(PruebasDTO obj) {
+    public boolean eliminar(PruebasDTO obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+   
 }

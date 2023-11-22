@@ -15,6 +15,7 @@ import java.util.List;
  * @author Usuario
  */
 public class ControllerPruebas implements Controller<Pruebas> {
+
     private Dao dao;
     private Msj msj;
 
@@ -22,31 +23,30 @@ public class ControllerPruebas implements Controller<Pruebas> {
         this.dao = dao;
         this.msj = msj;
     }
-    
-    
+
     @Override
-    public boolean create(Pruebas obj) {
+    public boolean insertar(Pruebas obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Pruebas read(String id) {
+    public Pruebas buscar(String id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<Pruebas> readAll() {
+    public List<Pruebas> buscarTodo() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean update(Pruebas obj) {
+    public boolean actulizar(Pruebas obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean delete(Pruebas obj) {
+    public boolean eliminar(Pruebas obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

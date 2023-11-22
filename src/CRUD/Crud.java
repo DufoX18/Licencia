@@ -13,13 +13,13 @@ import java.util.List;
  */
 public interface Crud<Class> {
 
-    public boolean create(Class obj);
+    public boolean insertar(Class obj);
 
-    public Class read(String id);
+    public Class buscar(String id);
 
-    public List<Class> readAll();
+    public List<Class> buscarTodo();
 
-    public boolean update(Class obj);
+    public boolean actulizar(Class obj);
 
-    public boolean delete(Class obj);
+    public boolean eliminar(Class obj);
 }
