@@ -7,15 +7,15 @@ package Models.Personas.DAO;
 import DaoBD.DaoBD;
 import Models.DAO.Dao;
 import Models.Personas.DTO.ClientesDTO;
-import READ.Read;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
  * @author Usuario
  */
-public class ClientesDAO implements Dao<ClientesDTO>, Read<ClientesDTO> {
+public class ClientesDAO implements Dao<ClientesDTO> {
 
     @Override
     public int insertar(ClientesDTO c) {
@@ -55,21 +55,63 @@ public class ClientesDAO implements Dao<ClientesDTO>, Read<ClientesDTO> {
 
     @Override
     public ClientesDTO eliminar(ClientesDTO c) {
-        DaoBD bd = new DaoBD(); 
+        DaoBD bd = new DaoBD();
         bd.createStatement("call EliminarCliente (?)");
         bd.set(1, c.getId());
         bd.execute(false);
         return c;
     }
 
-    @Override
-    public ClientesDTO buscar(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ClientesDTO buscar(int id, String cedula, String nombre, Date fecha, String telefono, String correo) {
+        try {
+            DaoBD bd = new DaoBD();
+            bd.createStatement("select * from clientes where id = ?");
+            bd.set(1, id);
+            bd.set(2, cedula);
+            bd.set(3, nombre);
+            bd.set(4, fecha);
+            bd.set(5, telefono);
+            bd.set(6, correo);
+            bd.execute(true);
+            if (bd.getData().next()) {
+                int idd = bd.getData().getInt(1);
+                String cedulaa = bd.getData().getString(2);
+                String nombree = bd.getData().getString(3);
+                Date fechaa = bd.getData().getDate(4);
+                String telefonoo = bd.getData().getString(5);
+                String correoo = bd.getData().getString(6);
+                return new ClientesDTO(id, cedulaa, nombree, fechaa, telefonoo, correoo);
+
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            return null;
+        }
     }
 
-    @Override
-    public List<ClientesDTO> buscarTodo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList buscarTodo() {
+        try {
+            DaoBD bd = new DaoBD();
+            bd.createStatement("select * from clientes");
+            bd.execute(true);
+            ArrayList<ClientesDTO> lista = new ArrayList<>();
+            while (bd.getData().next()) {
+                int id = bd.getData().getInt(1);
+                String cedulaa = bd.getData().getString(2);
+                String nombree = bd.getData().getString(3);
+                Date fechaa = bd.getData().getDate(4);
+                String telefonoo = bd.getData().getString(5);
+                String correoo = bd.getData().getString(6);
+                ClientesDTO dto = new ClientesDTO(id, cedulaa, nombree, fechaa, telefonoo, correoo);;
+                lista.add(dto);
+
+            }
+            return lista;
+        } catch (SQLException ex) {
+            return null;
+        }
     }
+
 
 }

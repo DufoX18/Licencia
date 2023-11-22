@@ -4,17 +4,15 @@
  */
 package Controller.Agenda;
 
-import Controller.Controller;
 import Mensajes.Msj;
 import Models.Agenda.Citas;
 import Models.DAO.Dao;
-import java.util.List;
-
+import Controller.ControllerDAO;
 /**
  *
  * @author Usuario
  */
-public class ControllerCitas implements Controller<Citas> {
+public class ControllerCitas implements ControllerDAO<Citas>{
 
     private Dao dao;
     private Msj msj;

@@ -4,18 +4,18 @@
  */
 package Controller.Persona;
 
-import Controller.Controller;
 import Mensajes.Msj;
 import Models.DAO.Dao;
 import Models.Personas.Oficiales;
 import READ.Read;
 import java.util.List;
+import Controller.ControllerDAO;
 
 /**
  *
  * @author Usuario
  */
-public class ControllerOficiales implements Controller<Oficiales>, Read<Oficiales>  {
+public class ControllerOficiales implements ControllerDAO<Oficiales> {
 
     private Dao dao;
     private Msj msj;
@@ -37,16 +37,6 @@ public class ControllerOficiales implements Controller<Oficiales>, Read<Oficiale
 
     @Override
     public Oficiales eliminar(Oficiales obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Oficiales buscar(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Oficiales> buscarTodo() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

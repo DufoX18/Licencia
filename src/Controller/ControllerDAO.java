@@ -2,18 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package READ;
+package Controller;
 
-import java.util.List;
+import CRUD.Crud;
 
 /**
  *
  * @author Usuario
  * @param <Class>
  */
-public interface Read <Class>{
+public interface ControllerDAO<Class> extends Crud<Class> {
 
-    public Class buscar(String id);
-
-    public List<Class> buscarTodo();
 }

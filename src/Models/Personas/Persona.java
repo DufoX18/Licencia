@@ -11,6 +11,7 @@ import java.util.Date;
  * @author Usuario
  */
 public abstract class Persona {
+
     private int id;
     private String cedula;
     private String nombre;
@@ -54,6 +55,10 @@ public abstract class Persona {
         this.correo = correo;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Persona(int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
         this.id = id;
         this.cedula = cedula;
@@ -62,6 +67,5 @@ public abstract class Persona {
         this.telefono = telefono;
         this.correo = correo;
     }
-    
-    
+
 }

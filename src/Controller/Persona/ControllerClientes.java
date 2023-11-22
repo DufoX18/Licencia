@@ -4,50 +4,41 @@
  */
 package Controller.Persona;
 
-import Controller.Controller;
-import Mensajes.Msj;
-import Models.DAO.Dao;
 import Models.Personas.Clientes;
-import READ.Read;
-import java.util.List;
+import Models.Personas.DAO.ClientesDAO;
+import Models.Personas.DTO.ClientesDTO;
+import View.InternalFrameClientes;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Usuario
  */
-public class ControllerClientes implements Controller<Clientes>, Read<Clientes> {
+public class ControllerClientes {
 
-    private Dao dao;
-    private Msj msj;
+    InternalFrameClientes vista;
 
-    public ControllerClientes(Dao dao, Msj msj) {
-        this.dao = dao;
-        this.msj = msj;
+    public void insertar(Clientes c) {
+        ClientesDAO dao = new ClientesDAO();
+        if (dao.buscar(c.getId(), c.getCedula(), c.getNombre(), c.getFechaNacimiento(), c.getTelefono(), c.getCorreo()) == null) {
+            ClientesDTO dto = new ClientesDTO(c.getId(), c.getCedula(), c.getNombre(), c.getFechaNacimiento(), c.getTelefono(), c.getCorreo());
+            int id = dao.insertar(dto);
+            c.setId(id);
+            vista.cargarDatos(c);
+            vista.notificar("La categoria se guardó correctamente", JOptionPane.INFORMATION_MESSAGE);
+            this.mostrarTodo();
+
+        } else {
+            vista.notificar("La categoria ya se encuentra registrada", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
-    @Override
-    public int insertar(Clientes obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void mostrarTodo() {
+        ClientesDAO dao = new ClientesDAO();
+        ArrayList lista = dao.buscarTodo();
+        if (lista != null) {
+            vista.mostrarTodo(lista);
+        }
     }
-
-    @Override
-    public Clientes actulizar(Clientes obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Clientes eliminar(Clientes obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Clientes buscar(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Clientes> buscarTodo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }

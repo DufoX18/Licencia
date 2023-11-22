@@ -4,17 +4,16 @@
  */
 package Controller.Agenda;
 
-import Controller.Controller;
-import DaoBD.DaoBD;
 import Mensajes.Msj;
 import Models.Agenda.Pruebas;
 import Models.DAO.Dao;
+import Controller.ControllerDAO;
 
 /**
  *
  * @author Usuario
  */
-public class ControllerPruebas implements Controller<Pruebas> {
+public class ControllerPruebas implements ControllerDAO<Pruebas>{
 
     private Dao dao;
     private Msj msj;

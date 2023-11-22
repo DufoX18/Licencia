@@ -6,14 +6,12 @@ package Models.Agenda.DAO;
 
 import Models.Agenda.DTO.CitasDTO;
 import Models.DAO.Dao;
-import READ.Read;
-import java.util.List;
 
 /**
  *
  * @author Usuario
  */
-public class CitasDAO implements Dao<CitasDTO>, Read<CitasDTO>{
+public class CitasDAO implements Dao<CitasDTO> {
 
     @Override
     public int insertar(CitasDTO obj) {
@@ -30,18 +28,4 @@ public class CitasDAO implements Dao<CitasDTO>, Read<CitasDTO>{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public CitasDTO buscar(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<CitasDTO> buscarTodo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    
-
-    
-    
 }
