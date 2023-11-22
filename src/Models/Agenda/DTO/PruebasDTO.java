@@ -16,8 +16,8 @@ public class PruebasDTO extends AgendaDTO{
     private String observaciones;
     private int nota;
     private String estado;
-    public PruebasDTO(int id, Date fecha, String hora) {
-        super(id, fecha, hora);
+    public PruebasDTO(int idC, Date fecha, String hora) {
+        super(idC, fecha, hora);
     }
 
     public Oficiales getOficial() {
@@ -36,8 +36,8 @@ public class PruebasDTO extends AgendaDTO{
         return estado;
     }
 
-    public PruebasDTO(Oficiales oficial, String observaciones, int nota, String estado, int id, Date fecha, String hora) {
-        super(id, fecha, hora);
+    public PruebasDTO(Oficiales oficial, String observaciones, int nota, String estado, int idC, Date fecha, String hora) {
+        super(idC, fecha, hora);
         this.oficial = oficial;
         this.observaciones = observaciones;
         this.nota = nota;

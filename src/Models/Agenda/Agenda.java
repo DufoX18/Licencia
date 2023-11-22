@@ -11,16 +11,16 @@ import java.util.Date;
  * @author Usuario
  */
 public abstract class Agenda {
-    private int id;
+    private int idC;
     private Date fecha;
     private String hora;
 
-    public int getId() {
-        return id;
+    public int getIdC() {
+        return idC;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idC = id;
     }
 
     public Date getFecha() {
@@ -39,8 +39,8 @@ public abstract class Agenda {
         this.hora = hora;
     }
 
-    public Agenda(int id, Date fecha, String hora) {
-        this.id = id;
+    public Agenda(int idC, Date fecha, String hora) {
+        this.idC = idC;
         this.fecha = fecha;
         this.hora = hora;
     }

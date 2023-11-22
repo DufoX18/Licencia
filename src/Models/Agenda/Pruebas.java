@@ -13,15 +13,24 @@ import java.util.Date;
  * @author Usuario
  */
 public class Pruebas extends Agenda{
+    private int idprueba;
     private Oficiales oficial;
     private String observaciones;
     private int nota;
     private String estado;
     
-    public Pruebas(int id, Date fecha, String hora) {
-        super(id, fecha, hora);
+    public Pruebas(int idC, Date fecha, String hora) {
+        super(idC, fecha, hora);
     }
 
+    public int getIdprueba() {
+        return idprueba;
+    }
+
+    public void setIdprueba(int idprueba) {
+        this.idprueba = idprueba;
+    }
+    
     public Oficiales getOficial() {
         return oficial;
     }
@@ -54,12 +63,13 @@ public class Pruebas extends Agenda{
         this.estado = estado;
     }
 
-    public Pruebas(Oficiales oficial, String observaciones, int nota, String estado, int id, Date fecha, String hora) {
-        super(id, fecha, hora);
+    public Pruebas(Oficiales oficial, String observaciones, int nota, String estado, int idC, Date fecha, String hora, int idprueba) {
+        super(idC, fecha, hora);
         this.oficial = oficial;
         this.observaciones = observaciones;
         this.nota = nota;
         this.estado = estado;
+        this.idprueba=idprueba;
     }
 
     
