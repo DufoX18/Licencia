@@ -34,9 +34,9 @@ public class Licencia {
 //        bd.set(4, "5");
 //        bd.execute(false);
 
-        bd.createStatement("call EliminarCliente(?)");
-        bd.set(1, "5");
-        bd.execute(false);
+//        bd.createStatement("call EliminarCliente(?)");
+//        bd.set(1, "5");
+//        bd.execute(false);
     }
 
 }
