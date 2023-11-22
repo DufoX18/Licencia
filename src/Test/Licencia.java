@@ -33,10 +33,17 @@ public class Licencia {
 //        bd.set(3, "pepepe@gmail.com");
 //        bd.set(4, "5");
 //        bd.execute(false);
-
 //        bd.createStatement("call EliminarCliente(?)");
 //        bd.set(1, "5");
 //        bd.execute(false);
+        bd.createStatement("call InsertarPruebas (null,?,?,?,?,?,?)");
+        bd.set(1, "2023/10/18");
+        bd.set(2, "12:30:00");
+        bd.set(3, "Excelente");
+        bd.set(4, "100");
+        bd.set(5, "Aprobado");    
+        bd.set(6, "1");
+        bd.execute(false);
     }
-    
+
 }
