@@ -8,7 +8,6 @@ import Controller.Controller;
 import Mensajes.Msj;
 import Models.Agenda.Pruebas;
 import Models.DAO.Dao;
-import java.util.List;
 
 /**
  *
@@ -25,27 +24,17 @@ public class ControllerPruebas implements Controller<Pruebas> {
     }
 
     @Override
-    public boolean insertar(Pruebas obj) {
+    public int insertar(Pruebas obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Pruebas buscar(String id) {
+    public Pruebas actulizar(Pruebas obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<Pruebas> buscarTodo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean actulizar(Pruebas obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean eliminar(Pruebas obj) {
+    public Pruebas eliminar(Pruebas obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

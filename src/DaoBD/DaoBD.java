@@ -29,7 +29,7 @@ public class DaoBD {
         }
     }
 
-    public void connect() {
+    private void connect() {
         try {
             this.connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/licencias", "java", "123");
         } catch (SQLException ex) {

@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Usuario
  */
-public class ControllerOficiales implements Controller<Oficiales> {
+public class ControllerOficiales implements Controller<Oficiales>  {
 
     private Dao dao;
     private Msj msj;
@@ -25,28 +25,19 @@ public class ControllerOficiales implements Controller<Oficiales> {
     }
 
     @Override
-    public boolean insertar(Oficiales obj) {
+    public int insertar(Oficiales obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Oficiales buscar(String id) {
+    public Oficiales actulizar(Oficiales obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<Oficiales> buscarTodo() {
+    public Oficiales eliminar(Oficiales obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public boolean actulizar(Oficiales obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean eliminar(Oficiales obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 }

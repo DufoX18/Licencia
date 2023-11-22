@@ -4,8 +4,6 @@
  */
 package CRUD;
 
-import java.util.List;
-
 /**
  *
  * @author Usuario
@@ -13,13 +11,9 @@ import java.util.List;
  */
 public interface Crud<Class> {
 
-    public boolean insertar(Class obj);
+    public int insertar(Class obj);
 
-    public Class buscar(String id);
+    public Class actulizar(Class obj);
 
-    public List<Class> buscarTodo();
-
-    public boolean actulizar(Class obj);
-
-    public boolean eliminar(Class obj);
+    public Class eliminar(Class obj);
 }
