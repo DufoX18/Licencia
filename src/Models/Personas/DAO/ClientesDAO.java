@@ -41,13 +41,24 @@ public class ClientesDAO implements Dao<ClientesDTO> {
     }
 
     @Override
-    public ClientesDTO actulizar(ClientesDTO obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ClientesDTO actulizar(ClientesDTO c) {
+        DaoBD bd = new DaoBD(); // Manejo de excepciones
+        bd.createStatement("call ActualizarCliente (?, ?, ?, ?)");
+        bd.set(1, c.getNombre());
+        bd.set(2, c.getTelefono());
+        bd.set(3, c.getCorreo());
+        bd.set(4, c.getId());
+        bd.execute(false);
+        return c;
     }
 
     @Override
-    public ClientesDTO eliminar(ClientesDTO obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ClientesDTO eliminar(ClientesDTO c) {
+        DaoBD bd = new DaoBD(); 
+        bd.createStatement("call EliminarCliente (?)");
+        bd.set(1, c.getId());
+        bd.execute(false);
+        return c;
     }
 
 }
