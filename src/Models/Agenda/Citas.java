@@ -14,8 +14,8 @@ import java.util.Date;
 public class Citas extends Agenda {
     private Clientes cliente;
     private boolean activa;
-    public Citas(int id, Date fecha, String hora) {
-        super(id, fecha, hora);
+    public Citas(int idC, Date fecha, String hora) {
+        super(idC, fecha, hora);
     }
 
     public Clientes getCliente() {
@@ -34,8 +34,8 @@ public class Citas extends Agenda {
         this.activa = activa;
     }
 
-    public Citas(Clientes cliente, boolean activa, int id, Date fecha, String hora) {
-        super(id, fecha, hora);
+    public Citas(Clientes cliente, boolean activa, int idC, Date fecha, String hora) {
+        super(idC, fecha, hora);
         this.cliente = cliente;
         this.activa = true;
     }

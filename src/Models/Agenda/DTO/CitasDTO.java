@@ -14,8 +14,8 @@ import java.util.Date;
 public class CitasDTO extends AgendaDTO {
     private Clientes cliente;
     private boolean activa;
-    public CitasDTO(int id, Date fecha, String hora) {
-        super(id, fecha, hora);
+    public CitasDTO(int idC, Date fecha, String hora) {
+        super(idC, fecha, hora);
     }
 
     public Clientes getCliente() {
@@ -26,8 +26,8 @@ public class CitasDTO extends AgendaDTO {
         return activa;
     }
 
-    public CitasDTO(Clientes cliente, boolean activa, int id, Date fecha, String hora) {
-        super(id, fecha, hora);
+    public CitasDTO(Clientes cliente, boolean activa, int idC, Date fecha, String hora) {
+        super(idC, fecha, hora);
         this.cliente = cliente;
         this.activa = activa;
     }
