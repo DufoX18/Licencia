@@ -7,6 +7,7 @@ package Models.Agenda.DAO;
 import DaoBD.DaoBD;
 import Models.Agenda.DTO.PruebasDTO;
 import Models.DAO.Dao;
+import READ.Read;
 import java.util.List;
 import java.sql.SQLException;
 
@@ -14,7 +15,7 @@ import java.sql.SQLException;
  *
  * @author Usuario
  */
-public class PruebasDAO implements Dao<PruebasDTO> {
+public class PruebasDAO implements Dao<PruebasDTO>, Read<PruebasDTO> {
 
     @Override
     public int insertar(PruebasDTO p) {
@@ -64,6 +65,16 @@ public class PruebasDAO implements Dao<PruebasDTO> {
         //bd.set(2, obj.getEstado());
         bd.execute(false);
         return p;
+    }
+
+    @Override
+    public PruebasDTO buscar(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<PruebasDTO> buscarTodo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

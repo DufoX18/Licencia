@@ -7,6 +7,7 @@ package Models.Personas.DAO;
 import DaoBD.DaoBD;
 import Models.DAO.Dao;
 import Models.Personas.DTO.OficialesDTO;
+import READ.Read;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  *
  * @author Usuario
  */
-public class OficialesDAO implements Dao<OficialesDTO> {
+public class OficialesDAO implements Dao<OficialesDTO>, Read<OficialesDTO> {
 
     @Override
     public int insertar(OficialesDTO c) {
@@ -61,6 +62,16 @@ public class OficialesDAO implements Dao<OficialesDTO> {
         bd.set(1, o.getId());
         bd.execute(false);
         return o;
+    }
+
+    @Override
+    public OficialesDTO buscar(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<OficialesDTO> buscarTodo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

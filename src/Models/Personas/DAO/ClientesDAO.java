@@ -7,14 +7,15 @@ package Models.Personas.DAO;
 import DaoBD.DaoBD;
 import Models.DAO.Dao;
 import Models.Personas.DTO.ClientesDTO;
+import READ.Read;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Usuario
  */
-public class ClientesDAO implements Dao<ClientesDTO> {
+public class ClientesDAO implements Dao<ClientesDTO>, Read<ClientesDTO> {
 
     @Override
     public int insertar(ClientesDTO c) {
@@ -59,6 +60,16 @@ public class ClientesDAO implements Dao<ClientesDTO> {
         bd.set(1, c.getId());
         bd.execute(false);
         return c;
+    }
+
+    @Override
+    public ClientesDTO buscar(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<ClientesDTO> buscarTodo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

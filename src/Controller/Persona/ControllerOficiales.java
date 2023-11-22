@@ -8,13 +8,14 @@ import Controller.Controller;
 import Mensajes.Msj;
 import Models.DAO.Dao;
 import Models.Personas.Oficiales;
+import READ.Read;
 import java.util.List;
 
 /**
  *
  * @author Usuario
  */
-public class ControllerOficiales implements Controller<Oficiales>  {
+public class ControllerOficiales implements Controller<Oficiales>, Read<Oficiales>  {
 
     private Dao dao;
     private Msj msj;
@@ -39,5 +40,14 @@ public class ControllerOficiales implements Controller<Oficiales>  {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public Oficiales buscar(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Oficiales> buscarTodo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }
