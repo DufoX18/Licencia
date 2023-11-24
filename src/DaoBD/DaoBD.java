@@ -31,7 +31,7 @@ public class DaoBD {
 
     private void connect() {
         try {
-            this.connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/licencias", "java", "123");
+            this.connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/licencia", "java", "123");
         } catch (SQLException ex) {
             System.out.println("Error al conectar" + ex.toString());
         }

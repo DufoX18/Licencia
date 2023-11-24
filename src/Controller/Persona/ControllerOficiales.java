@@ -7,8 +7,6 @@ package Controller.Persona;
 import Mensajes.Msj;
 import Models.DAO.Dao;
 import Models.Personas.Oficiales;
-import READ.Read;
-import java.util.List;
 import Controller.ControllerDAO;
 
 /**

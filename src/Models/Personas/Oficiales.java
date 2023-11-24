@@ -13,6 +13,7 @@ import java.util.Date;
 public class Oficiales extends Persona {
 
     private double salario;
+    public int contrasena;
 
     public Oficiales(int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
         super(id, cedula, nombre, fechaNacimiento, telefono, correo);
@@ -26,9 +27,15 @@ public class Oficiales extends Persona {
         this.salario = salario;
     }
 
-    public Oficiales(double salario, int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
+    public Oficiales(double salario, int contrasena, int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
         super(id, cedula, nombre, fechaNacimiento, telefono, correo);
         this.salario = salario;
+        this.contrasena = contrasena;
+    }
+
+    public Oficiales(int contrasena, int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
+        super(id, cedula, nombre, fechaNacimiento, telefono, correo);
+        this.contrasena = contrasena;
     }
 
 }
