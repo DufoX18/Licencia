@@ -22,5 +22,5 @@ public class Clientes extends Persona {
         super(id, cedula, nombre, fechaNacimiento, telefono, correo);
         this.edad = edad;
     }
-
+    
 }

@@ -19,18 +19,22 @@ public class ControllerClientes {
 
     InternalFrameClientes vista;
 
+    public ControllerClientes(InternalFrameClientes vista) {
+        this.vista = vista;
+    }
+
     public void insertar(Clientes c) {
         ClientesDAO dao = new ClientesDAO();
-        if (dao.buscar(c.getId(), c.getCedula(), c.getNombre(), c.getFechaNacimiento(), c.getTelefono(), c.getCorreo()) == null) {
+        if (dao.buscar( c.getCedula(), c.getNombre(), c.getFechaNacimiento(), c.getTelefono(), c.getCorreo()) == null) {
             ClientesDTO dto = new ClientesDTO(c.getId(), c.getCedula(), c.getNombre(), c.getFechaNacimiento(), c.getTelefono(), c.getCorreo());
             int id = dao.insertar(dto);
             c.setId(id);
             vista.cargarDatos(c);
-            vista.notificar("La categoria se guardó correctamente", JOptionPane.INFORMATION_MESSAGE);
+            vista.notificar("El cliente se guardó correctamente", JOptionPane.INFORMATION_MESSAGE);
             this.mostrarTodo();
 
         } else {
-            vista.notificar("La categoria ya se encuentra registrada", JOptionPane.ERROR_MESSAGE);
+            vista.notificar("El cliente ya se encuentra registrada", JOptionPane.ERROR_MESSAGE);
         }
     }
 

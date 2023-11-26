@@ -68,4 +68,12 @@ public abstract class Persona {
         this.correo = correo;
     }
 
+    public Persona(String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
+        this.id = 0;
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.fechaNacimiento = fechaNacimiento;
+        this.telefono = telefono;
+        this.correo = correo;
+    }
 }

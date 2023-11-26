@@ -19,7 +19,7 @@ public class ClientesDAO implements Dao<ClientesDTO> {
 
     @Override
     public int insertar(ClientesDTO c) {
-        try {
+//        try {
             DaoBD bd = new DaoBD();
             bd.createStatement("call InsertarCliente (null,?,?,?,?,?)");
             bd.set(1, c.getCedula());
@@ -28,17 +28,18 @@ public class ClientesDAO implements Dao<ClientesDTO> {
             bd.set(4, c.getTelefono());
             bd.set(5, c.getCorreo());
             bd.execute(false);
-            if (bd.getData().next()) {
-                int id = bd.getData().getInt(1);
-
-                return id;
-
-            } else {
-                return -1;
-            }
-        } catch (SQLException ex) {
-            return -1;
-        }
+//            if (bd.getData().next()) {
+//                int id = bd.getData().getInt(1);
+//
+//                return id;
+//
+//            } else {
+//                return -1;
+//            }
+//        } catch (SQLException ex) {
+//            return -1;
+//        }
+        return 0;
     }
 
     @Override
@@ -62,16 +63,15 @@ public class ClientesDAO implements Dao<ClientesDTO> {
         return c;
     }
 
-    public ClientesDTO buscar(int id, String cedula, String nombre, Date fecha, String telefono, String correo) {
+    public ClientesDTO buscar(String cedula, String nombre, Date fecha, String telefono, String correo) {
         try {
             DaoBD bd = new DaoBD();
-            bd.createStatement("select * from clientes where id = ?");
-            bd.set(1, id);
-            bd.set(2, cedula);
-            bd.set(3, nombre);
-            bd.set(4, fecha);
-            bd.set(5, telefono);
-            bd.set(6, correo);
+            bd.createStatement("select * from clientes where cedula = ?");
+            bd.set(1, cedula);
+            bd.set(2, nombre);
+            bd.set(3, fecha);
+            bd.set(4, telefono);
+            bd.set(5, correo);
             bd.execute(true);
             if (bd.getData().next()) {
                 int idd = bd.getData().getInt(1);
@@ -80,8 +80,7 @@ public class ClientesDAO implements Dao<ClientesDTO> {
                 Date fechaa = bd.getData().getDate(4);
                 String telefonoo = bd.getData().getString(5);
                 String correoo = bd.getData().getString(6);
-                return new ClientesDTO(id, cedulaa, nombree, fechaa, telefonoo, correoo);
-
+                return new ClientesDTO(idd, cedulaa, nombree, fechaa, telefonoo, correoo);
             } else {
                 return null;
             }
@@ -112,6 +111,5 @@ public class ClientesDAO implements Dao<ClientesDTO> {
             return null;
         }
     }
-
 
 }
