@@ -12,18 +12,23 @@ import java.util.Date;
  * @author Usuario
  */
 public class PruebasDTO extends AgendaDTO{
-    private Oficiales oficial;
+    private int idprueba;
+    private int idoficial;
     private String observaciones;
     private int nota;
     private String estado;
-    public PruebasDTO(int idC, Date fecha, String hora) {
-        super(idC, fecha, hora);
+    public PruebasDTO(int idCita, Date fecha, String hora) {
+        super(idCita, fecha, hora);
+    }
+    
+    public int getIdoficial() {
+        return idoficial;
     }
 
-    public Oficiales getOficial() {
-        return oficial;
+    public int getIdprueba() {
+        return idprueba;
     }
-
+    
     public String getObservaciones() {
         return observaciones;
     }
@@ -36,9 +41,10 @@ public class PruebasDTO extends AgendaDTO{
         return estado;
     }
 
-    public PruebasDTO(Oficiales oficial, String observaciones, int nota, String estado, int idC, Date fecha, String hora) {
-        super(idC, fecha, hora);
-        this.oficial = oficial;
+    public PruebasDTO(int idprueba, int idoficial, String observaciones, int nota, String estado, int idCita, Date fecha, String hora) {
+        super(idCita, fecha, hora);
+        this.idprueba = idprueba;
+        this.idoficial = idoficial;
         this.observaciones = observaciones;
         this.nota = nota;
         this.estado = estado;

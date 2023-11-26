@@ -12,12 +12,12 @@ import java.util.Date;
  * @author UTN
  */
 public abstract class AgendaDTO {
-    private int idC;
+    private int idCita;
     private Date fecha;
     private String hora;
 
-    public int getId() {
-        return idC;
+    public int getIdCita() {
+        return idCita;
     }
 
     public Date getFecha() {
@@ -28,8 +28,8 @@ public abstract class AgendaDTO {
         return hora;
     }
 
-    public AgendaDTO(int idC, Date fecha, String hora) {
-        this.idC = idC;
+    public AgendaDTO(int idCita, Date fecha, String hora) {
+        this.idCita = idCita;
         this.fecha = fecha;
         this.hora = hora;
     }

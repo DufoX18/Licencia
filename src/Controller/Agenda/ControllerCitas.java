@@ -8,12 +8,17 @@ import Mensajes.Msj;
 import Models.Agenda.Citas;
 import Models.DAO.Dao;
 import Controller.ControllerDAO;
+import Models.Agenda.DAO.CitasDAO;
+import Models.Agenda.DTO.CitasDTO;
+import View.InternalFrameCitas;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Usuario
  */
-public class ControllerCitas implements ControllerDAO<Citas>{
-
+public class ControllerCitas{
+    InternalFrameCitas vista;
     private Dao dao;
     private Msj msj;
 
@@ -22,19 +27,49 @@ public class ControllerCitas implements ControllerDAO<Citas>{
         this.msj = msj;
     }
 
-    @Override
-    public int insertar(Citas obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    public void insertar(Citas obj) {
+    CitasDAO dao = new CitasDAO();
+    if (dao.buscar(obj) == null) {
+        
+    } else {
+        vista.notificar("La cita no se pudo guardar", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+    public void mostrartodo(){
+        CitasDAO dao = new CitasDAO();
+        ArrayList lista = dao.buscarTodo();
+        if (lista!=null) {
+          vista.mostrartodo(); 
+        }
     }
 
-    @Override
-    public Citas actulizar(Citas obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    //verificar si se puede actualizar citas
+    public void actualizar(Citas obj) {
+        CitasDAO dao = new CitasDAO();
+        CitasDTO existente = dao.buscarPorId(obj.getIdCita());
+        
+        if (existente != null) {
+        dao.actulizar(existente);
+        vista.notificar("La cita se actualizó correctamente", JOptionPane.INFORMATION_MESSAGE);
+        this.mostrartodo();
+    } else {
+        vista.notificar("Cita no encontrada", JOptionPane.ERROR_MESSAGE);
+   }
+}
+    
+    public void eliminar(int idCita) {
+    CitasDAO dao = new CitasDAO();
+    CitasDTO existente = dao.buscarPorId(idCita);
 
-    @Override
-    public Citas eliminar(Citas obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    if (existente != null) {
+        dao.eliminar(existente);
+        vista.notificar("La cita se eliminó correctamente", JOptionPane.INFORMATION_MESSAGE);
+        this.mostrartodo();
+    } else {
+        vista.notificar("Cita no encontrada", JOptionPane.ERROR_MESSAGE);
     }
-
+    
+  }
 }

@@ -13,20 +13,30 @@ import java.util.Date;
  * @author Usuario
  */
 public class Pruebas extends Agenda{
-    private Oficiales oficial;
+    private int idprueba;
+    private int idoficial;
     private String observaciones;
     private int nota;
     private String estado;
     
-    public Pruebas(int idC, Date fecha, String hora) {
-        super(idC, fecha, hora);
-    }
-    public Oficiales getOficial() {
-        return oficial;
+    public Pruebas(int idCita, Date fecha, String hora) {
+        super(idCita, fecha, hora);
     }
 
-    public void setOficial(Oficiales oficial) {
-        this.oficial = oficial;
+    public int getIdprueba() {
+        return idprueba;
+    }
+
+    public void setIdprueba(int idprueba) {
+        this.idprueba = idprueba;
+    }
+    
+    public int getOficial() {
+        return idoficial;
+    }
+
+    public void setOficial(int oficial) {
+        this.idoficial = idoficial;
     }
 
     public String getObservaciones() {
@@ -53,13 +63,22 @@ public class Pruebas extends Agenda{
         this.estado = estado;
     }
 
-    public Pruebas(Oficiales oficial, String observaciones, int nota, String estado, int idC, Date fecha, String hora) {
-        super(idC, fecha, hora);
-        this.oficial = oficial;
+    public int getIdoficial() {
+        return idoficial;
+    }
+
+    public void setIdoficial(int idoficial) {
+        this.idoficial = idoficial;
+    }
+
+    public Pruebas(int idprueba, int idoficial, String observaciones, int nota, String estado, int idCita, Date fecha, String hora) {
+        super(idCita, fecha, hora);
+        this.idprueba = idprueba;
+        this.idoficial = idoficial;
         this.observaciones = observaciones;
         this.nota = nota;
         this.estado = estado;
     }
-
+    
     
 }
