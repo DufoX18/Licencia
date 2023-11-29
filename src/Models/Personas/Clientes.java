@@ -22,5 +22,9 @@ public class Clientes extends Persona {
         super(id, cedula, nombre, fechaNacimiento, telefono, correo);
         this.edad = edad;
     }
-    
+
+    public Clientes(String cedula, String nombre, String telefono, String correo) {
+        super(cedula, nombre, telefono, correo);
+    }
+
 }

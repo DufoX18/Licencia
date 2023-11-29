@@ -40,6 +40,7 @@ public class FrmLicencias extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemIngresarCliente = new javax.swing.JMenuItem();
+        jMenuItemActualizarCliente = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItemAgregarOficiales = new javax.swing.JMenuItem();
 
@@ -57,7 +58,7 @@ public class FrmLicencias extends javax.swing.JFrame {
         jDesktopPaneLicencias.setLayout(jDesktopPaneLicenciasLayout);
         jDesktopPaneLicenciasLayout.setHorizontalGroup(
             jDesktopPaneLicenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 946, Short.MAX_VALUE)
         );
         jDesktopPaneLicenciasLayout.setVerticalGroup(
             jDesktopPaneLicenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,11 +78,24 @@ public class FrmLicencias extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemIngresarCliente);
 
+        jMenuItemActualizarCliente.setText("ActualizarCliente");
+        jMenuItemActualizarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemActualizarClienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemActualizarCliente);
+
         jMenuBar1.add(jMenu1);
 
         jMenu4.setText("Oficiales");
 
         jMenuItemAgregarOficiales.setText("AgregarOficiales");
+        jMenuItemAgregarOficiales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAgregarOficialesActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItemAgregarOficiales);
 
         jMenuBar1.add(jMenu4);
@@ -93,10 +107,10 @@ public class FrmLicencias extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jDesktopPaneLicencias)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(266, 266, 266)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addGap(274, 274, 274))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,10 +127,18 @@ public class FrmLicencias extends javax.swing.JFrame {
 
     private void jMenuItemIngresarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemIngresarClienteActionPerformed
         // TODO add your handling code here:
-        InternalFrameClientes c = new InternalFrameClientes();
+        InternalFrameAgregarClientes c = new InternalFrameAgregarClientes();
         jDesktopPaneLicencias.add(c);
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItemIngresarClienteActionPerformed
+
+    private void jMenuItemAgregarOficialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAgregarOficialesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemAgregarOficialesActionPerformed
+
+    private void jMenuItemActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemActualizarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemActualizarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,6 +193,7 @@ public class FrmLicencias extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemActualizarCliente;
     private javax.swing.JMenuItem jMenuItemAgregarOficiales;
     private javax.swing.JMenuItem jMenuItemIngresarCliente;
     // End of variables declaration//GEN-END:variables

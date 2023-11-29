@@ -52,4 +52,11 @@ public abstract class PersonaDTO {
         this.correo = correo;
     }
 
+    public PersonaDTO(int id, String nombre, String telefono, String correo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.correo = correo;
+    }
+
 }
