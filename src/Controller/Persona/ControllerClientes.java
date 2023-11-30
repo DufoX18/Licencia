@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
 public class ControllerClientes {
 
     InternalFrameAgregarClientes vista;
-    
 
     public ControllerClientes(InternalFrameAgregarClientes vista) {
         this.vista = vista;
@@ -41,14 +40,26 @@ public class ControllerClientes {
 
     public void actualizar(Clientes c) {
         ClientesDAO dao = new ClientesDAO();
-        if (dao.buscar(c.getCedula(), c.getNombre(), c.getFechaNacimiento(), c.getTelefono(), c.getCorreo()) == null) {
-            ClientesDTO dto = new ClientesDTO(c.getId(), c.getNombre(), c.getTelefono(), c.getCorreo());
-            dao.actulizar(dto);
-            vista.cargarDatos(c);
-            vista.notificar("El cliente se actualizó correctamente", JOptionPane.INFORMATION_MESSAGE);
+        ClientesDTO dto = new ClientesDTO(c.getCedula(),c.getNombre(), c.getTelefono(), c.getCorreo());
+        boolean execute = dao.actulizarr(dto);
+        if (execute) {
             this.mostrarTodo();
+            vista.notificar("Cliente modificado correctamente", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            vista.notificar("No se pudo actualizar el cliente", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
+    public void eliminar(String cedula) {
+        ClientesDAO dao = new ClientesDAO();
+        boolean execute = dao.eliminarr(cedula);
+        if (execute) {
+            this.mostrarTodo();
+            vista.notificar("Cliente eliminado correctamente", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            vista.notificar("Error al actualizar el cliente, no se encontró en el sistema", JOptionPane.ERROR_MESSAGE);
+            vista.notificar("Error al eliminar el cliente", JOptionPane.ERROR_MESSAGE);
+
         }
     }
 

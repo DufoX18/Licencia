@@ -18,13 +18,22 @@ public class Clientes extends Persona {
         super(id, cedula, nombre, fechaNacimiento, telefono, correo);
     }
 
-    public Clientes(int edad, int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
-        super(id, cedula, nombre, fechaNacimiento, telefono, correo);
-        this.edad = edad;
+    public Clientes(String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
+        super(cedula, nombre, fechaNacimiento, telefono, correo);
     }
 
     public Clientes(String cedula, String nombre, String telefono, String correo) {
         super(cedula, nombre, telefono, correo);
     }
+
+    public Clientes(String cedula) {
+        super(cedula);
+    }
+
+    public Clientes(String nombre, String telefono, String correo) {
+        super(nombre, telefono, correo);
+    }
+
+    
 
 }

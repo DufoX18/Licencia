@@ -34,18 +34,10 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemIngresarCliente">
               <Properties>
-                <Property name="text" type="java.lang.String" value="AgregarCliente"/>
+                <Property name="text" type="java.lang.String" value="Administraci&#xf3;n Clientes"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemIngresarClienteActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemActualizarCliente">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="ActualizarCliente"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemActualizarClienteActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

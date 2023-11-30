@@ -20,14 +20,14 @@ public class ClientesDAO implements Dao<ClientesDTO> {
     @Override
     public int insertar(ClientesDTO c) {
 //        try {
-            DaoBD bd = new DaoBD();
-            bd.createStatement("call InsertarCliente (null,?,?,?,?,?)");
-            bd.set(1, c.getCedula());
-            bd.set(2, c.getNombre());
-            bd.set(3, c.getFechaNacimiento());
-            bd.set(4, c.getTelefono());
-            bd.set(5, c.getCorreo());
-            bd.execute(false);
+        DaoBD bd = new DaoBD();
+        bd.createStatement("call InsertarCliente (null,?,?,?,?,?)");
+        bd.set(1, c.getCedula());
+        bd.set(2, c.getNombre());
+        bd.set(3, c.getFechaNacimiento());
+        bd.set(4, c.getTelefono());
+        bd.set(5, c.getCorreo());
+        bd.execute(false);
 //            if (bd.getData().next()) {
 //                int id = bd.getData().getInt(1);
 //
@@ -42,25 +42,23 @@ public class ClientesDAO implements Dao<ClientesDTO> {
         return 0;
     }
 
-    @Override
-    public ClientesDTO actulizar(ClientesDTO c) {
+    public boolean actulizarr(ClientesDTO c) {
         DaoBD bd = new DaoBD(); // Manejo de excepciones
-        bd.createStatement("call ActualizarCliente (?, ?, ?, ?)");
+        bd.createStatement("UPDATE clientes SET nombre = ?, telefono = ?, correo = ? WHERE cedula = ?");
         bd.set(1, c.getNombre());
         bd.set(2, c.getTelefono());
         bd.set(3, c.getCorreo());
-        bd.set(4, c.getId());
-        bd.execute(false);
-        return c;
+        bd.set(4, c.getCedula());
+        return bd.execute(false);
+
     }
 
-    @Override
-    public ClientesDTO eliminar(ClientesDTO c) {
+    public boolean eliminarr(String c) {
         DaoBD bd = new DaoBD();
         bd.createStatement("call EliminarCliente (?)");
-        bd.set(1, c.getId());
-        bd.execute(false);
-        return c;
+        bd.set(1, c);
+        return bd.execute(false);
+
     }
 
     public ClientesDTO buscar(String cedula, String nombre, Date fecha, String telefono, String correo) {
@@ -68,10 +66,6 @@ public class ClientesDAO implements Dao<ClientesDTO> {
             DaoBD bd = new DaoBD();
             bd.createStatement("select * from clientes where cedula = ?");
             bd.set(1, cedula);
-            bd.set(2, nombre);
-            bd.set(3, fecha);
-            bd.set(4, telefono);
-            bd.set(5, correo);
             bd.execute(true);
             if (bd.getData().next()) {
                 int idd = bd.getData().getInt(1);
@@ -89,7 +83,7 @@ public class ClientesDAO implements Dao<ClientesDTO> {
         }
     }
 
-    public ArrayList buscarTodo() {
+    public ArrayList<ClientesDTO> buscarTodo() {
         try {
             DaoBD bd = new DaoBD();
             bd.createStatement("select * from clientes");
@@ -110,6 +104,16 @@ public class ClientesDAO implements Dao<ClientesDTO> {
         } catch (SQLException ex) {
             return null;
         }
+    }
+
+    @Override
+    public ClientesDTO eliminar(ClientesDTO obj) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ClientesDTO actulizar(ClientesDTO obj) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

@@ -19,5 +19,13 @@ public class ClientesDTO extends PersonaDTO{
     public ClientesDTO(int id, String nombre, String telefono, String correo) {
         super(id, nombre, telefono, correo);
     }
+
+    public ClientesDTO(String cedula, String nombre, String telefono, String correo) {
+        super(cedula, nombre, telefono, correo);
+    }
+
+    public ClientesDTO(String nombre, String telefono, String correo) {
+        super(nombre, telefono, correo);
+    }
     
 }

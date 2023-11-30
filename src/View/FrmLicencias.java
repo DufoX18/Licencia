@@ -40,7 +40,6 @@ public class FrmLicencias extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemIngresarCliente = new javax.swing.JMenuItem();
-        jMenuItemActualizarCliente = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItemAgregarOficiales = new javax.swing.JMenuItem();
 
@@ -70,21 +69,13 @@ public class FrmLicencias extends javax.swing.JFrame {
 
         jMenu1.setText("Clientes");
 
-        jMenuItemIngresarCliente.setText("AgregarCliente");
+        jMenuItemIngresarCliente.setText("Administración Clientes");
         jMenuItemIngresarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemIngresarClienteActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItemIngresarCliente);
-
-        jMenuItemActualizarCliente.setText("ActualizarCliente");
-        jMenuItemActualizarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemActualizarClienteActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItemActualizarCliente);
 
         jMenuBar1.add(jMenu1);
 
@@ -135,10 +126,6 @@ public class FrmLicencias extends javax.swing.JFrame {
     private void jMenuItemAgregarOficialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAgregarOficialesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemAgregarOficialesActionPerformed
-
-    private void jMenuItemActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemActualizarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemActualizarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,7 +180,6 @@ public class FrmLicencias extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItemActualizarCliente;
     private javax.swing.JMenuItem jMenuItemAgregarOficiales;
     private javax.swing.JMenuItem jMenuItemIngresarCliente;
     // End of variables declaration//GEN-END:variables

@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public abstract class Persona {
 
-    private int id;
+    int id;
     private String cedula;
     private String nombre;
     private Date fechaNacimiento;
@@ -86,6 +86,16 @@ public abstract class Persona {
 
     public Persona(String cedula, String nombre, String telefono, String correo) {
         this.cedula = cedula;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.correo = correo;
+    }
+
+    public Persona(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public Persona(String nombre, String telefono, String correo) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.correo = correo;

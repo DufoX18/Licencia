@@ -59,4 +59,17 @@ public abstract class PersonaDTO {
         this.correo = correo;
     }
 
+    public PersonaDTO(String nombre, String telefono, String correo) {
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.correo = correo;
+    }
+
+    public PersonaDTO(String cedula, String nombre, String telefono, String correo) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.correo = correo;
+    }
+
 }
