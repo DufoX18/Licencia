@@ -41,6 +41,8 @@ public class FrmLicencias extends javax.swing.JFrame {
         jMenuItemIngresarCliente = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItemAgregarOficiales = new javax.swing.JMenuItem();
+        MenuInicioSesion = new javax.swing.JMenuItem();
+        MenuCambioContrasena = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -65,7 +67,7 @@ public class FrmLicencias extends javax.swing.JFrame {
 
         jMenu1.setText("Clientes");
 
-        jMenuItemIngresarCliente.setText("Administración Clientes");
+        jMenuItemIngresarCliente.setText("AgregarClientes");
         jMenuItemIngresarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemIngresarClienteActionPerformed(evt);
@@ -84,6 +86,22 @@ public class FrmLicencias extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItemAgregarOficiales);
+
+        MenuInicioSesion.setText("Iniciar Sesión");
+        MenuInicioSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuInicioSesionActionPerformed(evt);
+            }
+        });
+        jMenu4.add(MenuInicioSesion);
+
+        MenuCambioContrasena.setText("Cambiar Contraseña");
+        MenuCambioContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuCambioContrasenaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(MenuCambioContrasena);
 
         jMenuBar1.add(jMenu4);
 
@@ -118,6 +136,20 @@ public class FrmLicencias extends javax.swing.JFrame {
         jDesktopPaneLicencias.add(o);
         o.setVisible(true);
     }//GEN-LAST:event_jMenuItemAgregarOficialesActionPerformed
+
+    private void MenuInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuInicioSesionActionPerformed
+        // TODO add your handling code here:
+        IniciarSesionOficial o = new IniciarSesionOficial();
+        jDesktopPaneLicencias.add(o);
+        o.setVisible(true);
+    }//GEN-LAST:event_MenuInicioSesionActionPerformed
+
+    private void MenuCambioContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCambioContrasenaActionPerformed
+        // TODO add your handling code here:
+        CambioContrasenaOficial o = new CambioContrasenaOficial();
+        jDesktopPaneLicencias.add(o);
+        o.setVisible(true);
+    }//GEN-LAST:event_MenuCambioContrasenaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,6 +195,8 @@ public class FrmLicencias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuCambioContrasena;
+    private javax.swing.JMenuItem MenuInicioSesion;
     private javax.swing.JDesktopPane jDesktopPaneLicencias;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

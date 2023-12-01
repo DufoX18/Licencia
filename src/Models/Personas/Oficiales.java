@@ -44,5 +44,4 @@ public class Oficiales extends Persona {
         this.contrasena = contrasena;
     }
 
-
 }

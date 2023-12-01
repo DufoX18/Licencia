@@ -4,10 +4,11 @@
  */
 package Controller.Persona;
 
-import Models.Personas.DAO.ClientesDAO;
 import Models.Personas.DAO.OficialesDAO;
 import Models.Personas.DTO.OficialesDTO;
 import Models.Personas.Oficiales;
+import View.CambioContrasenaOficial;
+import View.IniciarSesionOficial;
 import View.InternalFrameOficiales;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -19,9 +20,19 @@ import javax.swing.JOptionPane;
 public class ControllerOficiales {
 
     InternalFrameOficiales vista;
+    IniciarSesionOficial v;
+    CambioContrasenaOficial v2;
 
     public ControllerOficiales(InternalFrameOficiales vista) {
         this.vista = vista;
+    }
+
+    public ControllerOficiales(IniciarSesionOficial v) {
+        this.v = v;
+    }
+
+    public ControllerOficiales(CambioContrasenaOficial v2) {
+        this.v2 = v2;
     }
 
     public void insertar(Oficiales o) {
@@ -41,7 +52,7 @@ public class ControllerOficiales {
 
     public void actualizar(Oficiales o) {
         OficialesDAO dao = new OficialesDAO();
-        OficialesDTO dto = new OficialesDTO(o.getCedula(),o.getContrasena());
+        OficialesDTO dto = new OficialesDTO(o.getCedula(), o.getContrasena());
         boolean execute = dao.actulizar(dto);
         if (execute) {
             this.mostrarTodo();
@@ -69,6 +80,45 @@ public class ControllerOficiales {
         ArrayList lista = dao.buscarTodo();
         if (lista != null) {
             vista.mostrarTodo(lista);
+        }
+    }
+
+    public OficialesDTO iniciarSesion(String cedula, String contrasena) {
+        OficialesDAO dao = new OficialesDAO();
+        return dao.buscarPorCedulaYContrasena(cedula, contrasena);
+    }
+
+    public void actualizarContrasena(String cedula, String antiguaContrasena, String nuevaContrasena, String confirmarContrasena) {
+        OficialesDAO dao = new OficialesDAO();
+
+        // Verifica si la cédula existe en el sistema
+        if (!dao.existeOficial(cedula)) {
+            v2.notificar("No existe un oficial con la cédula proporcionada", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Verifica si la antigua contraseña coincide con la almacenada en la base de datos
+        if (!dao.verificarContrasena(cedula, antiguaContrasena)) {
+            v2.notificar("La antigua contraseña no coincide", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Verifica si la nueva contraseña y la confirmación coinciden
+        if (!nuevaContrasena.equals(confirmarContrasena)) {
+            v2.notificar("La nueva contraseña y la confirmación no coinciden", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Crear la instancia de OficialesDTO después de las verificaciones
+        OficialesDTO of = new OficialesDTO(cedula, nuevaContrasena);
+
+        boolean execute = dao.actulizar(of);
+
+        if (execute) {
+            this.mostrarTodo();
+            v2.notificar("Oficial modificado correctamente", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            v2.notificar("No se pudo actualizar el oficial", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

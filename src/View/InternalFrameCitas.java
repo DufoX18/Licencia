@@ -6,7 +6,7 @@ package View;
 
 /**
  *
- * @author UTN
+ * @author Usuario
  */
 public class InternalFrameCitas extends javax.swing.JInternalFrame {
 
@@ -39,14 +39,6 @@ public class InternalFrameCitas extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    public void notificar(String la_cita_no_se_pudo_guardar, int ERROR_MESSAGE) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void mostrartodo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

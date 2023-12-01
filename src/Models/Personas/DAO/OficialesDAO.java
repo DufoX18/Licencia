@@ -16,7 +16,6 @@ import java.util.Date;
  */
 public class OficialesDAO {
 
-    
     public int insertar(OficialesDTO c) {
 
         DaoBD bd = new DaoBD();
@@ -32,27 +31,24 @@ public class OficialesDAO {
         return 0;
     }
 
-   
-    
     public boolean actulizar(OficialesDTO o) {
         DaoBD bd = new DaoBD(); // Manejo de excepciones
         bd.createStatement("UPDATE oficiales SET contrasena = ? WHERE cedula = ?");
         bd.set(1, o.getContrasena());
         bd.set(2, o.getCedula());
         return bd.execute(false);
-      
+
     }
 
-    
     public boolean eliminar(String cedula) {
         DaoBD bd = new DaoBD();
         bd.createStatement("DELETE FROM oficiales WHERE cedula = ?");
         bd.set(1, cedula);
         return bd.execute(false);
-      
+
     }
 
-   public OficialesDTO buscar(String cedula, String nombre, Date fecha, String telefono, String correo, double salario, String contrasena) {
+    public OficialesDTO buscar(String cedula, String nombre, Date fecha, String telefono, String correo, double salario, String contrasena) {
         try {
             DaoBD bd = new DaoBD();
             bd.createStatement("select * from clientes where cedula = ?");
@@ -89,7 +85,7 @@ public class OficialesDAO {
                 Date fechaa = bd.getData().getDate(4);
                 String telefonoo = bd.getData().getString(5);
                 String correoo = bd.getData().getString(6);
-                 double salarioo = bd.getData().getFloat(7);
+                double salarioo = bd.getData().getFloat(7);
                 String contrasenaa = bd.getData().getString(8);
                 OficialesDTO dto = new OficialesDTO(id, cedulaa, nombree, fechaa, telefonoo, correoo, salarioo, contrasenaa);
                 lista.add(dto);
@@ -101,5 +97,56 @@ public class OficialesDAO {
         }
     }
 
-  
+    public OficialesDTO buscarPorCedulaYContrasena(String cedula, String contrasena) {
+        try {
+            DaoBD bd = new DaoBD();
+            bd.createStatement("SELECT * FROM oficiales WHERE cedula = ? AND contrasena = ?");
+            bd.set(1, cedula);
+            bd.set(2, contrasena);
+            bd.execute(true);
+            if (bd.getData().next()) {
+                int id = bd.getData().getInt(1);
+                String cedulaa = bd.getData().getString(2);
+                String nombree = bd.getData().getString(3);
+                Date fechaa = bd.getData().getDate(4);
+                String telefonoo = bd.getData().getString(5);
+                String correoo = bd.getData().getString(6);
+                String contrasenaa = bd.getData().getString(7);
+
+                return new OficialesDTO(id, cedulaa, nombree, fechaa, telefonoo, correoo, contrasenaa);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public boolean verificarContrasena(String cedula, String contrasena) {
+        try {
+            DaoBD bd = new DaoBD();
+            bd.createStatement("SELECT 1 FROM oficiales WHERE cedula = ? AND contrasena = ?");
+            bd.set(1, cedula);
+            bd.set(2, contrasena);
+            bd.execute(true);
+            return bd.getData().next();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean existeOficial(String cedula) {
+        try {
+            DaoBD bd = new DaoBD();
+            bd.createStatement("SELECT 1 FROM oficiales WHERE cedula = ?");
+            bd.set(1, cedula);
+            bd.execute(true);
+            return bd.getData().next();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }
