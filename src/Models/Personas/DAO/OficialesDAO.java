@@ -5,71 +5,101 @@
 package Models.Personas.DAO;
 
 import DaoBD.DaoBD;
-import Models.DAO.Dao;
 import Models.Personas.DTO.OficialesDTO;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
  * @author Usuario
  */
-public class OficialesDAO implements Dao<OficialesDTO> {
+public class OficialesDAO {
 
-    @Override
+    
     public int insertar(OficialesDTO c) {
-        try {
-            DaoBD bd = new DaoBD();
-            bd.createStatement("call InsertarOficial (null,?,?,?,?,?,?)");
-            bd.set(1, c.getCedula());
-            bd.set(2, c.getNombre());
-            bd.set(3, c.getFechaNacimiento());
-            bd.set(4, c.getTelefono());
-            bd.set(5, c.getCorreo());
-            bd.set(6, c.getSalario());
-            bd.execute(false);
-            if (bd.getData().next()) {
-                int id = bd.getData().getInt(1);
 
-                return id;
-
-            } else {
-                return -1;
-            }
-        } catch (SQLException ex) {
-            return -1;
-        }
-    }
-
-    @Override
-    public OficialesDTO actulizar(OficialesDTO o) {
-        DaoBD bd = new DaoBD(); // Manejo de excepciones
-        bd.createStatement("call ActualizarOficial (?, ?, ?, ?,?)");
-        bd.set(1, o.getNombre());
-        bd.set(2, o.getTelefono());
-        bd.set(3, o.getCorreo());
-        bd.set(4, o.getSalario());
-        bd.set(5, o.getId());
-        bd.execute(false);
-        return o;
-    }
-
-    @Override
-    public OficialesDTO eliminar(OficialesDTO o) {
         DaoBD bd = new DaoBD();
-        bd.createStatement("call EliminarOficial(?)");
-        bd.set(1, o.getId());
+        bd.createStatement("INSERT INTO oficiales VALUES (null,?,?,?,?,?,?)");
+        bd.set(1, c.getCedula());
+        bd.set(2, c.getNombre());
+        bd.set(3, c.getFechaNacimiento());
+        bd.set(4, c.getTelefono());
+        bd.set(5, c.getCorreo());
+        bd.set(6, c.getContrasena());
         bd.execute(false);
-        return o;
-    }
 
-    public OficialesDTO buscar(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return 0;
     }
 
    
-    public ArrayList buscarTodo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    public boolean actulizar(OficialesDTO o) {
+        DaoBD bd = new DaoBD(); // Manejo de excepciones
+        bd.createStatement("UPDATE oficiales SET contrasena = ? WHERE cedula = ?");
+        bd.set(1, o.getContrasena());
+        bd.set(2, o.getCedula());
+        return bd.execute(false);
+      
     }
 
+    
+    public boolean eliminar(String cedula) {
+        DaoBD bd = new DaoBD();
+        bd.createStatement("DELETE FROM oficiales WHERE cedula = ?");
+        bd.set(1, cedula);
+        return bd.execute(false);
+      
+    }
+
+   public OficialesDTO buscar(String cedula, String nombre, Date fecha, String telefono, String correo, double salario, String contrasena) {
+        try {
+            DaoBD bd = new DaoBD();
+            bd.createStatement("select * from clientes where cedula = ?");
+            bd.set(1, cedula);
+            bd.execute(true);
+            if (bd.getData().next()) {
+                int idd = bd.getData().getInt(1);
+                String cedulaa = bd.getData().getString(2);
+                String nombree = bd.getData().getString(3);
+                Date fechaa = bd.getData().getDate(4);
+                String telefonoo = bd.getData().getString(5);
+                String correoo = bd.getData().getString(6);
+                double salarioo = bd.getData().getFloat(7);
+                String contrasenaa = bd.getData().getString(8);
+                return new OficialesDTO(idd, cedulaa, nombree, fechaa, telefonoo, correoo, salarioo, contrasenaa);
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
+
+    public ArrayList<OficialesDTO> buscarTodo() {
+        try {
+            DaoBD bd = new DaoBD();
+            bd.createStatement("select * from clientes");
+            bd.execute(true);
+            ArrayList<OficialesDTO> lista = new ArrayList<>();
+            while (bd.getData().next()) {
+                int id = bd.getData().getInt(1);
+                String cedulaa = bd.getData().getString(2);
+                String nombree = bd.getData().getString(3);
+                Date fechaa = bd.getData().getDate(4);
+                String telefonoo = bd.getData().getString(5);
+                String correoo = bd.getData().getString(6);
+                 double salarioo = bd.getData().getFloat(7);
+                String contrasenaa = bd.getData().getString(8);
+                OficialesDTO dto = new OficialesDTO(id, cedulaa, nombree, fechaa, telefonoo, correoo, salarioo, contrasenaa);
+                lista.add(dto);
+
+            }
+            return lista;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
+
+  
 }

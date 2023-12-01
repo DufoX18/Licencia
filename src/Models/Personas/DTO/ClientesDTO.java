@@ -4,6 +4,7 @@
  */
 package Models.Personas.DTO;
 
+import static Models.Personas.Clientes.calcularEdad;
 import java.util.Date;
 
 /**
@@ -11,6 +12,11 @@ import java.util.Date;
  * @author Usuario
  */
 public class ClientesDTO extends PersonaDTO{
+    int edad;
+
+    public int getEdad() {
+        return edad;
+    }
     
     public ClientesDTO(int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
         super(id, cedula, nombre, fechaNacimiento, telefono, correo);
@@ -27,5 +33,9 @@ public class ClientesDTO extends PersonaDTO{
     public ClientesDTO(String nombre, String telefono, String correo) {
         super(nombre, telefono, correo);
     }
-    
+    public ClientesDTO(int edad, int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
+        super(id, cedula, nombre, fechaNacimiento, telefono, correo);
+        this.edad = calcularEdad(fechaNacimiento);
+    }
+
 }

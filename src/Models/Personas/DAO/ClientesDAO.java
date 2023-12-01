@@ -5,7 +5,6 @@
 package Models.Personas.DAO;
 
 import DaoBD.DaoBD;
-import Models.DAO.Dao;
 import Models.Personas.DTO.ClientesDTO;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,11 +14,10 @@ import java.util.Date;
  *
  * @author Usuario
  */
-public class ClientesDAO implements Dao<ClientesDTO> {
+public class ClientesDAO {
 
-    @Override
     public int insertar(ClientesDTO c) {
-//        try {
+
         DaoBD bd = new DaoBD();
         bd.createStatement("call InsertarCliente (null,?,?,?,?,?)");
         bd.set(1, c.getCedula());
@@ -28,17 +26,7 @@ public class ClientesDAO implements Dao<ClientesDTO> {
         bd.set(4, c.getTelefono());
         bd.set(5, c.getCorreo());
         bd.execute(false);
-//            if (bd.getData().next()) {
-//                int id = bd.getData().getInt(1);
-//
-//                return id;
-//
-//            } else {
-//                return -1;
-//            }
-//        } catch (SQLException ex) {
-//            return -1;
-//        }
+
         return 0;
     }
 
@@ -96,7 +84,7 @@ public class ClientesDAO implements Dao<ClientesDTO> {
                 Date fechaa = bd.getData().getDate(4);
                 String telefonoo = bd.getData().getString(5);
                 String correoo = bd.getData().getString(6);
-                ClientesDTO dto = new ClientesDTO(id, cedulaa, nombree, fechaa, telefonoo, correoo);;
+                ClientesDTO dto = new ClientesDTO(id, cedulaa, nombree, fechaa, telefonoo, correoo);
                 lista.add(dto);
 
             }
@@ -104,16 +92,6 @@ public class ClientesDAO implements Dao<ClientesDTO> {
         } catch (SQLException ex) {
             return null;
         }
-    }
-
-    @Override
-    public ClientesDTO eliminar(ClientesDTO obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ClientesDTO actulizar(ClientesDTO obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

@@ -4,38 +4,71 @@
  */
 package Controller.Persona;
 
-import Mensajes.Msj;
-import Models.DAO.Dao;
+import Models.Personas.DAO.ClientesDAO;
+import Models.Personas.DAO.OficialesDAO;
+import Models.Personas.DTO.OficialesDTO;
 import Models.Personas.Oficiales;
-import Controller.ControllerDAO;
+import View.InternalFrameOficiales;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Usuario
  */
-public class ControllerOficiales implements ControllerDAO<Oficiales> {
+public class ControllerOficiales {
 
-    private Dao dao;
-    private Msj msj;
+    InternalFrameOficiales vista;
 
-    public ControllerOficiales(Dao dao, Msj msj) {
-        this.dao = dao;
-        this.msj = msj;
+    public ControllerOficiales(InternalFrameOficiales vista) {
+        this.vista = vista;
     }
 
-    @Override
-    public int insertar(Oficiales obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void insertar(Oficiales o) {
+        OficialesDAO dao = new OficialesDAO();
+        if (dao.buscar(o.getCedula(), o.getNombre(), o.getFechaNacimiento(), o.getTelefono(), o.getCorreo(), o.getSalario(), o.getContrasena()) == null) {
+            OficialesDTO dto = new OficialesDTO(o.getId(), o.getCedula(), o.getNombre(), o.getFechaNacimiento(), o.getTelefono(), o.getCorreo(), o.getSalario(), o.getContrasena());
+            int id = dao.insertar(dto);
+            o.setId(id);
+            vista.cargarDatos(o);
+            vista.notificar("El oficial se guardó correctamente", JOptionPane.INFORMATION_MESSAGE);
+            this.mostrarTodo();
+
+        } else {
+            vista.notificar("El oficial ya se encuentra registrada", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
-    @Override
-    public Oficiales actulizar(Oficiales obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void actualizar(Oficiales o) {
+        OficialesDAO dao = new OficialesDAO();
+        OficialesDTO dto = new OficialesDTO(o.getCedula(),o.getContrasena());
+        boolean execute = dao.actulizar(dto);
+        if (execute) {
+            this.mostrarTodo();
+            vista.notificar("Oficial modificado correctamente", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            vista.notificar("No se pudo actualizar el oficial", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
-    @Override
-    public Oficiales eliminar(Oficiales obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void eliminar(String cedula) {
+        OficialesDAO dao = new OficialesDAO();
+        boolean execute = dao.eliminar(cedula);
+        if (execute) {
+            this.mostrarTodo();
+            vista.notificar("Oficial eliminado correctamente", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            vista.notificar("Error al eliminar el oficial", JOptionPane.ERROR_MESSAGE);
+
+        }
     }
 
+    public void mostrarTodo() {
+        OficialesDAO dao = new OficialesDAO();
+        ArrayList lista = dao.buscarTodo();
+        if (lista != null) {
+            vista.mostrarTodo(lista);
+        }
+    }
 }

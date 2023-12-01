@@ -7,7 +7,7 @@ package Controller.Persona;
 import Models.Personas.Clientes;
 import Models.Personas.DAO.ClientesDAO;
 import Models.Personas.DTO.ClientesDTO;
-import View.InternalFrameAgregarClientes;
+import View.InternalFrameClientes;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -17,9 +17,9 @@ import javax.swing.JOptionPane;
  */
 public class ControllerClientes {
 
-    InternalFrameAgregarClientes vista;
+    InternalFrameClientes vista;
 
-    public ControllerClientes(InternalFrameAgregarClientes vista) {
+    public ControllerClientes(InternalFrameClientes vista) {
         this.vista = vista;
     }
 
@@ -40,12 +40,12 @@ public class ControllerClientes {
 
     public void actualizar(Clientes c) {
         ClientesDAO dao = new ClientesDAO();
-        ClientesDTO dto = new ClientesDTO(c.getCedula(),c.getNombre(), c.getTelefono(), c.getCorreo());
+        ClientesDTO dto = new ClientesDTO(c.getCedula(), c.getNombre(), c.getTelefono(), c.getCorreo());
         boolean execute = dao.actulizarr(dto);
         if (execute) {
             this.mostrarTodo();
             vista.notificar("Cliente modificado correctamente", JOptionPane.INFORMATION_MESSAGE);
-        }else{
+        } else {
             vista.notificar("No se pudo actualizar el cliente", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -70,5 +70,4 @@ public class ControllerClientes {
             vista.mostrarTodo(lista);
         }
     }
-
 }

@@ -4,18 +4,74 @@
  */
 package View;
 
+import Controller.Persona.ControllerOficiales;
+import Models.Personas.DTO.OficialesDTO;
+import Models.Personas.Oficiales;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Usuario
  */
 public class InternalFrameOficiales extends javax.swing.JInternalFrame {
 
+    private ControllerOficiales oficial;
+
     /**
      * Creates new form InternalFrameOficiales
      */
     public InternalFrameOficiales() {
         initComponents();
+        oficial = new ControllerOficiales(this);
     }
+
+    public void notificar(String msj, int tipo) {
+        JOptionPane.showMessageDialog(this, msj, "notificacion", tipo);
+    }
+
+    public void cargarDatos(Oficiales o) {
+        this.TxtCedulaOficial.setText(o.getCedula());
+        this.TxtNombreOficial.setText(o.getNombre());
+        this.TxtTelefonoOficial.setText(o.getTelefono());
+        this.TxtCorreoOficial.setText(o.getCorreo());
+        this.TxtFechaNacimientoOficial.setText(String.valueOf(o.getFechaNacimiento()));
+        this.TxtSalarioOficial.setText(Double.toString(o.getSalario()));
+     
+
+    }
+
+    public void mostrarTodo(ArrayList<OficialesDTO> lista) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("cedula");
+        model.addColumn("nombre");
+        model.addColumn("FechaNacimiento");
+        model.addColumn("telefono");
+        model.addColumn("correo");
+        model.addColumn("salario");
+
+        for (OficialesDTO oficiales : lista) {
+            Object[] row = {
+                oficiales.getCedula(),
+                oficiales.getNombre(),
+                oficiales.getFechaNacimiento(),
+                oficiales.getTelefono(),
+                oficiales.getCorreo(),
+                oficiales.getSalario()
+            };
+            model.addRow(row);
+        }
+        this.TblOficiales.setModel(model);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,26 +83,31 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        TxtIdOficial = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         TxtCedulaOficial = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         TxtNombreOficial = new javax.swing.JTextField();
         TxtTelefonoOficial = new javax.swing.JTextField();
         TxtCorreoOficial = new javax.swing.JTextField();
-        TxtSalarioOficial = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        TxtFechaNacimeintoOficial = new javax.swing.JTextField();
-        BtnIngresarContrasena = new javax.swing.JButton();
+        TxtFechaNacimientoOficial = new javax.swing.JTextField();
+        BtnGuardarOficial = new javax.swing.JButton();
+        BtnEliminarOficial = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TblOficiales = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        TxtFiltroOficiales = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        TxtSalarioOficial = new javax.swing.JTextField();
+        TxtContrasena = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Registro de Oficiales");
+        setClosable(true);
 
-        jLabel2.setText("ID del Oficial");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Clientes");
 
         jLabel3.setText("Cédula");
 
@@ -56,120 +117,235 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Correo");
 
-        jLabel7.setText("Salario");
+        jLabel8.setText("Fecha de Nacimiento");
 
-        jLabel8.setText("Fecha de Nacimeinto");
+        BtnGuardarOficial.setText("Guardar");
+        BtnGuardarOficial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGuardarOficialActionPerformed(evt);
+            }
+        });
 
-        BtnIngresarContrasena.setText("Ingresar Contraseña");
+        BtnEliminarOficial.setText("Eliminar");
+        BtnEliminarOficial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarOficialActionPerformed(evt);
+            }
+        });
+
+        TblOficiales.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Cédula", "Nombre", "FechaNacimiento", "Teléfono", "Correo", "Salario"
+            }
+        ));
+        jScrollPane1.setViewportView(TblOficiales);
+
+        jLabel7.setText("Buscar");
+
+        TxtFiltroOficiales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtFiltroOficialesActionPerformed(evt);
+            }
+        });
+        TxtFiltroOficiales.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TxtFiltroOficialesKeyReleased(evt);
+            }
+        });
+
+        jLabel9.setText("Salario");
+
+        TxtContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtContrasenaActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Contraseña");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(114, 114, 114))
+                .addContainerGap()
+                .addComponent(TxtFiltroOficiales)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnIngresarContrasena)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                        .addComponent(TxtFechaNacimeintoOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(237, 237, 237))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addGap(118, 118, 118))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(TxtNombreOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TxtSalarioOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(158, 158, 158)
+                        .addComponent(BtnGuardarOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
                         .addComponent(jLabel7)
-                        .addGap(120, 120, 120))
+                        .addGap(33, 33, 33)
+                        .addComponent(BtnEliminarOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(TxtIdOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TxtTelefonoOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(TxtCedulaOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TxtCorreoOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(jLabel8)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(74, 74, 74)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel8)
+                                .addGap(42, 42, 42))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TxtCorreoOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(TxtCedulaOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TxtSalarioOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(91, 91, 91)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TxtFechaNacimientoOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(22, 22, 22))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(TxtTelefonoOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(TxtNombreOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(108, 108, 108))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(194, 194, 194))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(114, 114, 114))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(TxtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(223, 223, 223))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel2)
+                        .addGap(61, 61, 61)
+                        .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TxtIdOficial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtTelefonoOficial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(TxtTelefonoOficial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtCedulaOficial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TxtCorreoOficial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtNombreOficial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TxtSalarioOficial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(jLabel8)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(TxtCorreoOficial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addComponent(TxtCedulaOficial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TxtSalarioOficial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(TxtFechaNacimientoOficial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TxtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(TxtFechaNacimeintoOficial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(BtnIngresarContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16))))
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TxtFiltroOficiales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnEliminarOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnGuardarOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BtnGuardarOficialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarOficialActionPerformed
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+        try {
+            Date fechaNacimiento = inputFormat.parse(this.TxtFechaNacimientoOficial.getText());
+            Oficiales o = new Oficiales(this.TxtCedulaOficial.getText(), this.TxtNombreOficial.getText(), fechaNacimiento,
+                    this.TxtTelefonoOficial.getText(), this.TxtCorreoOficial.getText(),this.TxtContrasena.getText());
+            oficial.insertar(o);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Formato incorrecto de la Fecha de Nacimiento", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnGuardarOficialActionPerformed
+
+    private void BtnEliminarOficialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarOficialActionPerformed
+        // TODO add your handling code here:}
+        String cedula = this.TxtCedulaOficial.getText();
+        oficial.eliminar(cedula);
+
+    }//GEN-LAST:event_BtnEliminarOficialActionPerformed
+
+    private void TxtFiltroOficialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFiltroOficialesActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_TxtFiltroOficialesActionPerformed
+
+    private void TxtFiltroOficialesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroOficialesKeyReleased
+        // TODO add your handling code here:
+        filter(this.TblOficiales, this.TxtFiltroOficiales.getText());
+    }//GEN-LAST:event_TxtFiltroOficialesKeyReleased
+
+    private void TxtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtContrasenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtContrasenaActionPerformed
+    public void filter(JTable tbl, String text) {
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(tbl.getModel());
+        tbl.setRowSorter(sorter);
+        if (text.isEmpty()) {
+            sorter.setRowFilter(null);
+
+        } else {
+            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnIngresarContrasena;
+    private javax.swing.JButton BtnEliminarOficial;
+    private javax.swing.JButton BtnGuardarOficial;
+    private javax.swing.JTable TblOficiales;
     private javax.swing.JTextField TxtCedulaOficial;
+    private javax.swing.JTextField TxtContrasena;
     private javax.swing.JTextField TxtCorreoOficial;
-    private javax.swing.JTextField TxtFechaNacimeintoOficial;
-    private javax.swing.JTextField TxtIdOficial;
+    private javax.swing.JTextField TxtFechaNacimientoOficial;
+    private javax.swing.JTextField TxtFiltroOficiales;
     private javax.swing.JTextField TxtNombreOficial;
     private javax.swing.JTextField TxtSalarioOficial;
     private javax.swing.JTextField TxtTelefonoOficial;
@@ -181,5 +357,7 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
