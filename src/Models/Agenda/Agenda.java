@@ -44,5 +44,11 @@ public abstract class Agenda {
         this.fecha = fecha;
         this.hora = hora;
     }
-    
+
+    public Agenda(Date fecha, String hora) {
+        this.idCita=0;
+        this.fecha = fecha;
+        this.hora = hora;
+    }
+   
 }

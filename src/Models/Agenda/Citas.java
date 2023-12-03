@@ -12,18 +12,20 @@ import java.util.Date;
  * @author Usuario
  */
 public class Citas extends Agenda {
-    private int idcliente;
+    private String cedula;
     private boolean activa;
     public Citas(int idCita, Date fecha, String hora) {
         super(idCita, fecha, hora);
     }
-
-    public int getCliente() {
-        return idcliente;
+    public Citas(Date fecha, String hora){
+        super(0,fecha, hora);
+    }
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setCliente(int cliente) {
-        this.idcliente = idcliente;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
     public boolean isActiva() {
@@ -34,10 +36,19 @@ public class Citas extends Agenda {
         this.activa = activa;
     }
 
-    public Citas(int cliente, boolean activa, int idC, Date fecha, String hora) {
-        super(idC, fecha, hora);
-        this.idcliente = idcliente;
+    public Citas(String cedula, boolean activa, int idCita, Date fecha, String hora) {
+        super(idCita, fecha, hora);
+        this.cedula = cedula;
         this.activa = true;
     }
-    
+
+    public Citas(String cedula, boolean activa, Date fecha, String hora) {
+        super(0,fecha, hora);
+        this.cedula = cedula;
+        this.activa = activa;
+    }
+    public Citas(String cedula,Date fecha, String hora){
+        super(0,fecha, hora);
+        this.cedula=cedula;
+    }
 }

@@ -13,7 +13,8 @@ import java.util.Date;
  */
 public class PruebasDTO extends AgendaDTO{
     private int idprueba;
-    private int idoficial;
+    private String cedulaCliente;
+    private String cedulaOficial;
     private String observaciones;
     private int nota;
     private String estado;
@@ -21,8 +22,16 @@ public class PruebasDTO extends AgendaDTO{
         super(idCita, fecha, hora);
     }
     
-    public int getIdoficial() {
-        return idoficial;
+    public PruebasDTO(Date fecha, String hora){
+        super(fecha, hora);
+    }
+
+    public String getCedulaCliente() {
+        return cedulaCliente;
+    }
+    
+    public String getCedulaOficial() {
+        return cedulaOficial;
     }
 
     public int getIdprueba() {
@@ -41,14 +50,23 @@ public class PruebasDTO extends AgendaDTO{
         return estado;
     }
 
-    public PruebasDTO(int idprueba, int idoficial, String observaciones, int nota, String estado, int idCita, Date fecha, String hora) {
+    public PruebasDTO(int idprueba, String cedulaOficial, String observaciones, int nota, String estado, int idCita, String cedulaCliente, Date fecha, String hora) {
         super(idCita, fecha, hora);
         this.idprueba = idprueba;
-        this.idoficial = idoficial;
+        this.cedulaOficial = cedulaOficial;
+        this.cedulaCliente=cedulaCliente;
         this.observaciones = observaciones;
         this.nota = nota;
         this.estado = estado;
     }
     
-    
+        public PruebasDTO(int idprueba, String cedulaOficial, String cedulaCliente, String observaciones, int nota, String estado, Date fecha, String hora) {
+       super(0,fecha, hora);
+        this.idprueba = idprueba;
+        this.cedulaOficial = cedulaOficial;
+        this.cedulaCliente = cedulaCliente;
+        this.observaciones = observaciones;
+        this.nota = nota;
+        this.estado = estado;
+    }
 }

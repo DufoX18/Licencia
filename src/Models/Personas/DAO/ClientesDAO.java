@@ -19,7 +19,7 @@ public class ClientesDAO {
     public int insertar(ClientesDTO c) {
 
         DaoBD bd = new DaoBD();
-        bd.createStatement("call InsertarCliente (null,?,?,?,?,?)");
+        bd.createStatement("insert into clientes values(?,?,?,?,?)");
         bd.set(1, c.getCedula());
         bd.set(2, c.getNombre());
         bd.set(3, c.getFechaNacimiento());
@@ -74,7 +74,7 @@ public class ClientesDAO {
     public ArrayList<ClientesDTO> buscarTodo() {
         try {
             DaoBD bd = new DaoBD();
-            bd.createStatement("select * from clientes");
+            bd.createStatement("SELECT * FROM clientes");
             bd.execute(true);
             ArrayList<ClientesDTO> lista = new ArrayList<>();
             while (bd.getData().next()) {

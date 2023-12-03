@@ -43,6 +43,10 @@ public class FrmLicencias extends javax.swing.JFrame {
         jMenuItemAgregarOficiales = new javax.swing.JMenuItem();
         MenuInicioSesion = new javax.swing.JMenuItem();
         MenuCambioContrasena = new javax.swing.JMenuItem();
+        JMENUPRUEBAS = new javax.swing.JMenu();
+        MenuAgregarPruebas = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -105,6 +109,30 @@ public class FrmLicencias extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        JMENUPRUEBAS.setText("AgregarPruebas");
+
+        MenuAgregarPruebas.setText("AgregarPruebas");
+        MenuAgregarPruebas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuAgregarPruebasActionPerformed(evt);
+            }
+        });
+        JMENUPRUEBAS.add(MenuAgregarPruebas);
+
+        jMenuBar1.add(JMENUPRUEBAS);
+
+        jMenu5.setText("Citas");
+
+        jMenuItem2.setText("AgregarCitas");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu5);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,6 +179,18 @@ public class FrmLicencias extends javax.swing.JFrame {
         o.setVisible(true);
     }//GEN-LAST:event_MenuCambioContrasenaActionPerformed
 
+    private void MenuAgregarPruebasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAgregarPruebasActionPerformed
+        InternalFrameFormPruebas o = new InternalFrameFormPruebas();
+        jDesktopPaneLicencias.add(o);
+        o.setVisible(true);
+    }//GEN-LAST:event_MenuAgregarPruebasActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        InternalFrameCita a = new InternalFrameCita();
+        jDesktopPaneLicencias.add(a);
+        a.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -195,16 +235,20 @@ public class FrmLicencias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu JMENUPRUEBAS;
+    private javax.swing.JMenuItem MenuAgregarPruebas;
     private javax.swing.JMenuItem MenuCambioContrasena;
     private javax.swing.JMenuItem MenuInicioSesion;
-    private javax.swing.JDesktopPane jDesktopPaneLicencias;
+    public static javax.swing.JDesktopPane jDesktopPaneLicencias;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemAgregarOficiales;
     private javax.swing.JMenuItem jMenuItemIngresarCliente;
     // End of variables declaration//GEN-END:variables
