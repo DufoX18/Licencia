@@ -4,6 +4,7 @@
  */
 package Models.Personas.DAO;
 
+
 import DaoBD.DaoBD;
 import Models.Personas.DTO.OficialesDTO;
 import java.sql.SQLException;
@@ -37,7 +38,6 @@ public class OficialesDAO {
         bd.set(1, o.getContrasena());
         bd.set(2, o.getCedula());
         return bd.execute(false);
-
     }
 
     public boolean eliminar(String cedula) {

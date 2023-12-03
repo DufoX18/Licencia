@@ -5,6 +5,7 @@
 package View;
 
 import Controller.Persona.ControllerOficiales;
+import Models.Personas.Oficiales;
 import javax.swing.JOptionPane;
 
 /**
@@ -45,6 +46,8 @@ public class CambioContrasenaOficial extends javax.swing.JInternalFrame {
         BtnConfirmar = new javax.swing.JButton();
         TxtCedula = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+
+        setClosable(true);
 
         jLabel1.setText("Digite su contraseña anterior");
 
@@ -119,12 +122,13 @@ public class CambioContrasenaOficial extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfirmarActionPerformed
-        String antiguaContrasena = this.TxtContrasenaAnterior.getText();
-        String cedula = this.TxtCedula.getText();
-        String nuevaContrasena = this.TxtNuevaContrasena.getText();
-        String confirmarContrasena = this.TxtConfirmarContrasenaNueva.getText();
-        // Utiliza el controlador para actualizar la contraseña
-        oficial.actualizarContrasena(cedula, antiguaContrasena, nuevaContrasena, confirmarContrasena);
+        if (this.TxtCedula.getText().isEmpty() ||this.TxtContrasenaAnterior.getText().isEmpty() || this.TxtNuevaContrasena.getText().isEmpty() || this.TxtConfirmarContrasenaNueva.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Oficiales o = new Oficiales(this.TxtNuevaContrasena.getText(), this.TxtCedula.getText());
+        oficial.actualizarContrasena(this.TxtCedula.getText(), this.TxtContrasenaAnterior.getText(), this.TxtNuevaContrasena.getText(), this.TxtConfirmarContrasenaNueva.getText());
+
     }//GEN-LAST:event_BtnConfirmarActionPerformed
 
 
