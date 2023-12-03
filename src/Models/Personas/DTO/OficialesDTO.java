@@ -49,7 +49,8 @@ public class OficialesDTO extends PersonaDTO {
         this.contrasena = contrasena;
     }
 
-   
-
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
   
 }

@@ -90,35 +90,33 @@ public class ControllerOficiales {
 
     public void actualizarContrasena(String cedula, String antiguaContrasena, String nuevaContrasena, String confirmarContrasena) {
         OficialesDAO dao = new OficialesDAO();
-
-        // Verifica si la cédula existe en el sistema
         if (!dao.existeOficial(cedula)) {
             v2.notificar("No existe un oficial con la cédula proporcionada", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        // Verifica si la antigua contraseña coincide con la almacenada en la base de datos
         if (!dao.verificarContrasena(cedula, antiguaContrasena)) {
             v2.notificar("La antigua contraseña no coincide", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        // Verifica si la nueva contraseña y la confirmación coinciden
         if (!nuevaContrasena.equals(confirmarContrasena)) {
             v2.notificar("La nueva contraseña y la confirmación no coinciden", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        // Crear la instancia de OficialesDTO después de las verificaciones
         OficialesDTO of = new OficialesDTO(cedula, nuevaContrasena);
-
-        boolean execute = dao.actulizar(of);
+        
+        boolean execute = true;
+        execute = dao.actulizar(of);
+        System.out.println("Cedula: " + cedula);
+        System.out.println("Antigua Contraseña: " + antiguaContrasena);
+        System.out.println("Nueva Contraseña: " + nuevaContrasena);
+        System.out.println("Confirmar Contraseña: " + confirmarContrasena);
+        System.out.println("Actualización Exitosa: " + execute);
 
         if (execute) {
             this.mostrarTodo();
             v2.notificar("Oficial modificado correctamente", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            v2.notificar("No se pudo actualizar el oficial", JOptionPane.ERROR_MESSAGE);
+        }else{
+            v2.notificar("Error al actualizar el oficial", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
