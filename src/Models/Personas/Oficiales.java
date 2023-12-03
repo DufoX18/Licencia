@@ -15,7 +15,6 @@ public class Oficiales extends Persona {
     private double salario;
     public String contrasena;
 
-
     public String getContrasena() {
         return contrasena;
     }
@@ -24,7 +23,6 @@ public class Oficiales extends Persona {
         this.contrasena = contrasena;
     }
 
-    
     public double getSalario() {
         return salario;
     }
@@ -41,6 +39,11 @@ public class Oficiales extends Persona {
 
     public Oficiales(String cedula, String nombre, Date fechaNacimiento, String telefono, String correo, String contrasena) {
         super(cedula, nombre, fechaNacimiento, telefono, correo);
+        this.contrasena = contrasena;
+    }
+
+    public Oficiales(String contrasena, String cedula) {
+        super(cedula);
         this.contrasena = contrasena;
     }
 
