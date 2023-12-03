@@ -20,7 +20,7 @@ public class OficialesDAO {
     public int insertar(OficialesDTO c) {
 
         DaoBD bd = new DaoBD();
-        bd.createStatement("INSERT INTO oficiales VALUES (null,?,?,?,?,?,?)");
+        bd.createStatement("INSERT INTO oficiales VALUES (?,?,?,?,?,?)");
         bd.set(1, c.getCedula());
         bd.set(2, c.getNombre());
         bd.set(3, c.getFechaNacimiento());

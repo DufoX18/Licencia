@@ -12,24 +12,30 @@ import java.util.Date;
  * @author Usuario
  */
 public class CitasDTO extends AgendaDTO {
-    private int idcliente;
+    private String cedula;
     private boolean activa;
     public CitasDTO(int idCita, Date fecha, String hora) {
         super(idCita, fecha, hora);
     }
-
-    public int getIdCliente() {
-        return idcliente;
+    
+    public String getCedula() {
+        return cedula;
     }
 
     public boolean isActiva() {
         return activa;
     }
 
-    public CitasDTO(int idcliente, boolean activa, int idCita, Date fecha, String hora) {
+    public CitasDTO(String cedula, boolean activa, int idCita, Date fecha, String hora) {
         super(idCita, fecha, hora);
-        this.idcliente = idcliente;
+        this.cedula = cedula;
         this.activa = activa;
     }
-    
+
+    public CitasDTO(String cedula, boolean activa, Date fecha, String hora) {
+        super(0,fecha, hora);
+        this.cedula = cedula;
+        this.activa = activa;
+    }
+   
 }

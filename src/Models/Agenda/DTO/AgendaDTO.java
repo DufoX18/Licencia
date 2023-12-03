@@ -33,5 +33,11 @@ public abstract class AgendaDTO {
         this.fecha = fecha;
         this.hora = hora;
     }
-    
+
+    public AgendaDTO(Date fecha, String hora) {
+        this.idCita=0;
+        this.fecha = fecha;
+        this.hora = hora;
+    }
+
 }

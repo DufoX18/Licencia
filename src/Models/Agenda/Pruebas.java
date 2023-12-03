@@ -14,7 +14,8 @@ import java.util.Date;
  */
 public class Pruebas extends Agenda{
     private int idprueba;
-    private int idoficial;
+    private String cedulaOficial;
+    private String cedulaCliente;
     private String observaciones;
     private int nota;
     private String estado;
@@ -22,7 +23,13 @@ public class Pruebas extends Agenda{
     public Pruebas(int idCita, Date fecha, String hora) {
         super(idCita, fecha, hora);
     }
-
+    public Pruebas(Date fecha, String hora){
+        super(0,fecha, hora);
+    }
+    public String getCedulaCliente() {
+        return cedulaCliente;
+    }
+    
     public int getIdprueba() {
         return idprueba;
     }
@@ -31,14 +38,6 @@ public class Pruebas extends Agenda{
         this.idprueba = idprueba;
     }
     
-    public int getOficial() {
-        return idoficial;
-    }
-
-    public void setOficial(int oficial) {
-        this.idoficial = idoficial;
-    }
-
     public String getObservaciones() {
         return observaciones;
     }
@@ -63,22 +62,34 @@ public class Pruebas extends Agenda{
         this.estado = estado;
     }
 
-    public int getIdoficial() {
-        return idoficial;
+    public String getCedulaOficial() {
+        return cedulaOficial;
     }
 
-    public void setIdoficial(int idoficial) {
-        this.idoficial = idoficial;
+    public void setCedulaOficial(String cedulaOficial) {
+        this.cedulaOficial = cedulaOficial;
     }
 
-    public Pruebas(int idprueba, int idoficial, String observaciones, int nota, String estado, int idCita, Date fecha, String hora) {
+    public Pruebas(int idprueba, String cedulaOficial, String observaciones, int nota, String estado, int idCita, Date fecha, String hora, String cedulaCliente) {
         super(idCita, fecha, hora);
         this.idprueba = idprueba;
-        this.idoficial = idoficial;
+        this.cedulaOficial = cedulaOficial;
+        this.cedulaCliente=cedulaCliente;
         this.observaciones = observaciones;
         this.nota = nota;
         this.estado = estado;
     }
+
+    public Pruebas(int idprueba, String cedulaOficial, String cedulaCliente, String observaciones, int nota, String estado, Date fecha, String hora) {
+        super(fecha, hora);
+        this.idprueba = idprueba;
+        this.cedulaOficial = cedulaOficial;
+        this.cedulaCliente = cedulaCliente;
+        this.observaciones = observaciones;
+        this.nota = nota;
+        this.estado = estado;
+    }
+    
     
     
 }
