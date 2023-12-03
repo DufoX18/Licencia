@@ -101,9 +101,4 @@ public abstract class Persona {
         this.telefono = telefono;
         this.correo = correo;
     }
-
-    public Persona(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-    
 }

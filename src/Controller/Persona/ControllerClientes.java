@@ -9,8 +9,6 @@ import Models.Personas.DAO.ClientesDAO;
 import Models.Personas.DTO.ClientesDTO;
 import View.InternalFrameClientes;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -71,23 +69,5 @@ public class ControllerClientes {
         if (lista != null) {
             vista.mostrarTodo(lista);
         }
-    }
-
-    public int calcularEdad(Date fechaNacimiento) {
-        Calendar fechaNacimientoCalendar = Calendar.getInstance();
-        fechaNacimientoCalendar.setTime(fechaNacimiento);
-
-        Calendar fechaActual = Calendar.getInstance();
-
-        int diferenciaAnios = fechaActual.get(Calendar.YEAR) - fechaNacimientoCalendar.get(Calendar.YEAR);
-
-        // Ajuste si la fecha actual no ha alcanzado la fecha de nacimiento
-        if (fechaActual.get(Calendar.MONTH) < fechaNacimientoCalendar.get(Calendar.MONTH)
-                || (fechaActual.get(Calendar.MONTH) == fechaNacimientoCalendar.get(Calendar.MONTH)
-                && fechaActual.get(Calendar.DAY_OF_MONTH) < fechaNacimientoCalendar.get(Calendar.DAY_OF_MONTH))) {
-            diferenciaAnios--;
-        }
-
-        return diferenciaAnios;
     }
 }

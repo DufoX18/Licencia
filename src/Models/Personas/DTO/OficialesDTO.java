@@ -25,6 +25,11 @@ public class OficialesDTO extends PersonaDTO {
         this.contrasena = contrasena;
     }
 
+    public OficialesDTO(double salario, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo, double s) {
+        super(cedula, nombre, fechaNacimiento, telefono, correo);
+        this.salario = s;
+    }
+
     public String getContrasena() {
         return contrasena;
     }
@@ -44,13 +49,7 @@ public class OficialesDTO extends PersonaDTO {
         this.contrasena = contrasena;
     }
 
-    public OficialesDTO(String contrasena, int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
-        super(id, cedula, nombre, fechaNacimiento, telefono, correo);
-        this.contrasena = contrasena;
-    }
+    
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
   
 }

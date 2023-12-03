@@ -4,6 +4,7 @@
  */
 package Models.Personas.DTO;
 
+import static Models.Personas.Clientes.calcularEdad;
 import java.util.Date;
 
 /**
@@ -34,7 +35,7 @@ public class ClientesDTO extends PersonaDTO{
     }
     public ClientesDTO(int edad, int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
         super(id, cedula, nombre, fechaNacimiento, telefono, correo);
-        this.edad = edad;
+        this.edad = calcularEdad(fechaNacimiento);
     }
 
 }

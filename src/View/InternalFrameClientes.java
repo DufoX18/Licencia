@@ -10,7 +10,11 @@ import Models.Personas.DTO.ClientesDTO;
 import com.mysql.cj.xdevapi.Table;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -60,13 +64,30 @@ public class InternalFrameClientes extends javax.swing.JInternalFrame {
             Object[] row = {
                 clientes.getCedula(),
                 clientes.getNombre(),
-                clientes.getEdad(),
+                calcularEdad(clientes.getFechaNacimiento()),
                 clientes.getTelefono(),
                 clientes.getCorreo()
             };
             model.addRow(row);
         }
         this.TblClientes.setModel(model);
+    }
+
+    private int calcularEdad(Date fechaNacimiento) {
+        Calendar fechaNacimientoCalendar = Calendar.getInstance();
+        fechaNacimientoCalendar.setTime(fechaNacimiento);
+
+        Calendar fechaActual = Calendar.getInstance();
+
+        int diferenciaAnios = fechaActual.get(Calendar.YEAR) - fechaNacimientoCalendar.get(Calendar.YEAR);
+
+        if (fechaActual.get(Calendar.MONTH) < fechaNacimientoCalendar.get(Calendar.MONTH)
+                || (fechaActual.get(Calendar.MONTH) == fechaNacimientoCalendar.get(Calendar.MONTH)
+                && fechaActual.get(Calendar.DAY_OF_MONTH) < fechaNacimientoCalendar.get(Calendar.DAY_OF_MONTH))) {
+            diferenciaAnios--;
+        }
+
+        return diferenciaAnios;
     }
 
     /**
@@ -208,8 +229,8 @@ public class InternalFrameClientes extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addComponent(TxtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(TxtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(41, 41, 41)
+                        .addComponent(TxtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -329,19 +350,6 @@ public class InternalFrameClientes extends javax.swing.JInternalFrame {
 
     private void TxtEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtEdadActionPerformed
         // TODO add your handling code here:
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date fechaNacimiento = null;
-
-        try {
-            fechaNacimiento = dateFormat.parse(this.TxtFechaNacimientoCliente.getText());
-        } catch (ParseException e) {
-            e.printStackTrace(); // Manejar la excepción en caso de formato incorrecto
-        }
-
-        if (fechaNacimiento != null) {
-            int edad = cliente.calcularEdad(fechaNacimiento);
-            this.TxtEdad.setText(Integer.toString(edad));
-        }
     }//GEN-LAST:event_TxtEdadActionPerformed
     public void filter(JTable tbl, String text) {
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(tbl.getModel());

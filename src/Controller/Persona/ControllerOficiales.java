@@ -4,6 +4,7 @@
  */
 package Controller.Persona;
 
+import DaoBD.DaoBD;
 import Models.Personas.DAO.OficialesDAO;
 import Models.Personas.DTO.OficialesDTO;
 import Models.Personas.Oficiales;
@@ -50,28 +51,19 @@ public class ControllerOficiales {
         }
     }
 
-    public void actualizar(Oficiales o) {
-        OficialesDAO dao = new OficialesDAO();
-        OficialesDTO dto = new OficialesDTO(o.getCedula(), o.getContrasena());
-        boolean execute = dao.actulizar(dto);
-        if (execute) {
-            this.mostrarTodo();
-            vista.notificar("Oficial modificado correctamente", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            vista.notificar("No se pudo actualizar el oficial", JOptionPane.ERROR_MESSAGE);
-        }
-
-    }
-
     public void eliminar(String cedula) {
         OficialesDAO dao = new OficialesDAO();
+        if (dao.contarOficiales() <= 1) {
+            vista.notificar("No se puede eliminar el único oficial en la base de datos", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         boolean execute = dao.eliminar(cedula);
+
         if (execute) {
             this.mostrarTodo();
             vista.notificar("Oficial eliminado correctamente", JOptionPane.INFORMATION_MESSAGE);
         } else {
             vista.notificar("Error al eliminar el oficial", JOptionPane.ERROR_MESSAGE);
-
         }
     }
 
@@ -88,35 +80,52 @@ public class ControllerOficiales {
         return dao.buscarPorCedulaYContrasena(cedula, contrasena);
     }
 
-    public void actualizarContrasena(String cedula, String antiguaContrasena, String nuevaContrasena, String confirmarContrasena) {
+    public void actualizar2(OficialesDTO o, String antiguaContrasena, String nuevaContrasena, String confirmarContrasena) {
         OficialesDAO dao = new OficialesDAO();
-        if (!dao.existeOficial(cedula)) {
-            v2.notificar("No existe un oficial con la cédula proporcionada", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if (!dao.verificarContrasena(cedula, antiguaContrasena)) {
-            v2.notificar("La antigua contraseña no coincide", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if (!nuevaContrasena.equals(confirmarContrasena)) {
-            v2.notificar("La nueva contraseña y la confirmación no coinciden", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        OficialesDTO of = new OficialesDTO(cedula, nuevaContrasena);
-        
-        boolean execute = true;
-        execute = dao.actulizar(of);
-        System.out.println("Cedula: " + cedula);
-        System.out.println("Antigua Contraseña: " + antiguaContrasena);
-        System.out.println("Nueva Contraseña: " + nuevaContrasena);
-        System.out.println("Confirmar Contraseña: " + confirmarContrasena);
-        System.out.println("Actualización Exitosa: " + execute);
+        try {
+            if (antiguaContrasena != null && !dao.verificarContrasena(o.getCedula(), antiguaContrasena)) {
+                notificar("La antigua contraseña no coincide", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (nuevaContrasena != null && !nuevaContrasena.equals(confirmarContrasena)) {
+                notificar("La nueva contraseña y la confirmación no coinciden", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-        if (execute) {
-            this.mostrarTodo();
-            v2.notificar("Oficial modificado correctamente", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            v2.notificar("Error al actualizar el oficial", JOptionPane.ERROR_MESSAGE);
+            OficialesDTO of = new OficialesDTO(o.getCedula(), nuevaContrasena);
+            boolean execute = dao.actulizar(of);
+            notificarResultado(execute, "Oficial modificado correctamente", "No se pudo actualizar el oficial");
+
+        } catch (Exception e) {
+            notificar("Error al actualizar la información del oficial", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void notificarResultado(boolean execute, String successMessage, String errorMessage) {
+        if (execute) {
+            mostrarTodo();
+            notificar(successMessage, JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            notificar(errorMessage, JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void notificar(String mensaje, int tipo) {
+        if (v2 != null) {
+            v2.notificar(mensaje, tipo);
+        } else {
+            System.out.println("Error: La instancia de v2 es null");
+        }
+    }
+
+    public OficialesDTO obtenerOficialPorCedula(String cedula) {
+        OficialesDAO dao = new OficialesDAO();
+
+        try {
+            return dao.buscarPorCedula(cedula);
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 }

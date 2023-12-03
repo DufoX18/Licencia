@@ -32,6 +32,7 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
     public InternalFrameOficiales() {
         initComponents();
         oficial = new ControllerOficiales(this);
+       
     }
 
     public void notificar(String msj, int tipo) {
@@ -45,7 +46,6 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
         this.TxtCorreoOficial.setText(o.getCorreo());
         this.TxtFechaNacimientoOficial.setText(String.valueOf(o.getFechaNacimiento()));
         this.TxtSalarioOficial.setText(Double.toString(o.getSalario()));
-     
 
     }
 
@@ -71,7 +71,6 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
         }
         this.TblOficiales.setModel(model);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -304,7 +303,7 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
         try {
             Date fechaNacimiento = inputFormat.parse(this.TxtFechaNacimientoOficial.getText());
             Oficiales o = new Oficiales(this.TxtCedulaOficial.getText(), this.TxtNombreOficial.getText(), fechaNacimiento,
-                    this.TxtTelefonoOficial.getText(), this.TxtCorreoOficial.getText(),this.TxtContrasena.getText());
+                    this.TxtTelefonoOficial.getText(), this.TxtCorreoOficial.getText(), this.TxtContrasena.getText());
             oficial.insertar(o);
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(this, "Formato incorrecto de la Fecha de Nacimiento", "Error", JOptionPane.ERROR_MESSAGE);
@@ -341,6 +340,7 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
             sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
         }
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnEliminarOficial;
