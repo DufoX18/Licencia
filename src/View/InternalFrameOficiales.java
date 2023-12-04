@@ -46,10 +46,20 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
         this.TxtCorreoOficial.setText(o.getCorreo());
         this.TxtFechaNacimientoOficial.setText(String.valueOf(o.getFechaNacimiento()));
         this.TxtSalarioOficial.setText(Double.toString(o.getSalario()));
+        
 
     }
+    public void clear(){
+         this.TxtCedulaOficial.setText("");
+        this.TxtNombreOficial.setText("");
+        this.TxtTelefonoOficial.setText("");
+        this.TxtCorreoOficial.setText("");
+        this.TxtFechaNacimientoOficial.setText("");
+        this.TxtSalarioOficial.setText("");
+        this.TxtContrasena.setText("");
+    }
 
-    public void mostrarTodo(ArrayList<OficialesDTO> lista) {
+    public void mostrarTodo(ArrayList<OficialesDTO> listao) {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("cedula");
         model.addColumn("nombre");
@@ -57,19 +67,21 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
         model.addColumn("telefono");
         model.addColumn("correo");
         model.addColumn("salario");
+        model.addColumn("contrasena");
 
-        for (OficialesDTO oficiales : lista) {
+        for (OficialesDTO oficiales : listao) {
             Object[] row = {
                 oficiales.getCedula(),
                 oficiales.getNombre(),
                 oficiales.getFechaNacimiento(),
                 oficiales.getTelefono(),
                 oficiales.getCorreo(),
-                oficiales.getSalario()
-            };
+                oficiales.getSalario(),
+                oficiales.getContrasena().hashCode(),};
+            
             model.addRow(row);
         }
-        this.TblOficiales.setModel(model);
+        this.TblOfi.setModel(model);
     }
 
     /**
@@ -95,7 +107,7 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
         BtnGuardarOficial = new javax.swing.JButton();
         BtnEliminarOficial = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TblOficiales = new javax.swing.JTable();
+        TblOfi = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         TxtFiltroOficiales = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -132,18 +144,19 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
             }
         });
 
-        TblOficiales.setModel(new javax.swing.table.DefaultTableModel(
+        TblOfi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cédula", "Nombre", "FechaNacimiento", "Teléfono", "Correo", "Salario"
+                "Cédula", "Nombre", "FechaNacimiento", "Teléfono", "Correo", "Salario", "Contraseña"
             }
         ));
-        jScrollPane1.setViewportView(TblOficiales);
+        jScrollPane1.setViewportView(TblOfi);
 
         jLabel7.setText("Buscar");
 
@@ -178,14 +191,10 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(280, 280, 280))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -228,18 +237,24 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
                 .addComponent(TxtTelefonoOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(TxtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(235, 235, 235)
-                            .addComponent(BtnGuardarOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(BtnEliminarOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(300, 300, 300)
-                            .addComponent(jLabel7))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(BtnGuardarOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnEliminarOficial, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(300, 300, 300)
+                        .addComponent(jLabel7)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(TxtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(289, 289, 289))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,6 +320,7 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
             Oficiales o = new Oficiales(this.TxtCedulaOficial.getText(), this.TxtNombreOficial.getText(), fechaNacimiento,
                     this.TxtTelefonoOficial.getText(), this.TxtCorreoOficial.getText(), this.TxtContrasena.getText());
             oficial.insertar(o);
+            clear();
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(this, "Formato incorrecto de la Fecha de Nacimiento", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -314,6 +330,8 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
         // TODO add your handling code here:}
         String cedula = this.TxtCedulaOficial.getText();
         oficial.eliminar(cedula);
+        clear();
+        
 
     }//GEN-LAST:event_BtnEliminarOficialActionPerformed
 
@@ -324,7 +342,7 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
 
     private void TxtFiltroOficialesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroOficialesKeyReleased
         // TODO add your handling code here:
-        filter(this.TblOficiales, this.TxtFiltroOficiales.getText());
+        filter(this.TblOfi, this.TxtFiltroOficiales.getText());
     }//GEN-LAST:event_TxtFiltroOficialesKeyReleased
 
     private void TxtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtContrasenaActionPerformed
@@ -345,7 +363,7 @@ public class InternalFrameOficiales extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnEliminarOficial;
     private javax.swing.JButton BtnGuardarOficial;
-    private javax.swing.JTable TblOficiales;
+    private javax.swing.JTable TblOfi;
     private javax.swing.JTextField TxtCedulaOficial;
     private javax.swing.JTextField TxtContrasena;
     private javax.swing.JTextField TxtCorreoOficial;

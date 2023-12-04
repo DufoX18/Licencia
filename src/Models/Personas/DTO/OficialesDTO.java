@@ -16,31 +16,32 @@ public class OficialesDTO extends PersonaDTO {
     private String contrasena;
 
     public OficialesDTO(int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo, double salario, String contrasena) {
-        this(id, cedula, nombre, fechaNacimiento, telefono, correo, contrasena);
-    }
-
-    public OficialesDTO(int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo, String contrasena) {
-        super(id, cedula, nombre, fechaNacimiento, telefono, correo);
+        this(id, cedula, nombre, fechaNacimiento, telefono, correo);
         this.salario = salario;
         this.contrasena = contrasena;
     }
 
-    public OficialesDTO(double salario, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo, double s) {
+    public OficialesDTO(String cedula, String nombre, Date fechaNacimiento, String telefono, String correo, double salario, String contrasena) {
         super(cedula, nombre, fechaNacimiento, telefono, correo);
-        this.salario = s;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public double getSalario() {
-        return salario;
-    }
-
-    public OficialesDTO(double salario, String contrasena, int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
-        super(id, cedula, nombre, fechaNacimiento, telefono, correo);
         this.salario = salario;
+        this.contrasena = contrasena;
+    }
+
+    public OficialesDTO(int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
+        super(id, cedula, nombre, fechaNacimiento, telefono, correo);
+    }
+
+    public OficialesDTO(String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
+        super(cedula, nombre, fechaNacimiento, telefono, correo);
+    }
+
+    public OficialesDTO(double salario, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo) {
+        super(cedula, nombre, fechaNacimiento, telefono, correo);
+        this.salario = salario;
+    }
+
+    public OficialesDTO(int id, String cedula, String nombre, Date fechaNacimiento, String telefono, String correo, String contrasena) {
+        super(id, cedula, nombre, fechaNacimiento, telefono, correo);
         this.contrasena = contrasena;
     }
 
@@ -49,7 +50,12 @@ public class OficialesDTO extends PersonaDTO {
         this.contrasena = contrasena;
     }
 
-    
+    public double getSalario() {
+        return salario;
+    }
 
-  
+    public String getContrasena() {
+        return contrasena;
+    }
+
 }

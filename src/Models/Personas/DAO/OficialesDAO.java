@@ -92,7 +92,7 @@ public class OficialesDAO {
                 String correoo = bd.getData().getString(6);
                 double salarioo = bd.getData().getFloat(7);
                 String contrasenaa = bd.getData().getString(8);
-                OficialesDTO dto = new OficialesDTO(id, cedulaa, nombree, fechaa, telefonoo, correoo, salarioo, contrasenaa);
+                OficialesDTO dto = new OficialesDTO(cedulaa, nombree, fechaa, telefonoo, correoo, salarioo, contrasenaa);
                 lista.add(dto);
 
             }

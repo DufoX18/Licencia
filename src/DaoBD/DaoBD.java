@@ -19,7 +19,7 @@ public class DaoBD {
     private Connection connection;
     private PreparedStatement statement;
     private ResultSet resultset;
-    
+
     public DaoBD() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -39,12 +39,12 @@ public class DaoBD {
 
     public void createStatement(String sql) {
         try {
-            this.statement = this.connection.prepareStatement(sql,statement.RETURN_GENERATED_KEYS);
+            this.statement = this.connection.prepareStatement(sql, statement.RETURN_GENERATED_KEYS);
         } catch (SQLException ex) {
             System.out.println("Error al preparar la sentencia" + ex.toString());
         }
     }
-    
+
     public void set(int index, Object param) {
         try {
             this.statement.setObject(index, param);
@@ -74,5 +74,16 @@ public class DaoBD {
 
     public ResultSet getData() {
         return this.resultset;
+    }
+
+    public void close() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+                System.out.println("Conexión cerrada");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al cerrar la conexión: " + e.getMessage());
+        }
     }
 }

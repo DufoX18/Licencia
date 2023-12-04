@@ -6,7 +6,6 @@ package View;
 
 import Controller.Persona.ControllerOficiales;
 import Models.Personas.DTO.OficialesDTO;
-import Models.Personas.Oficiales;
 import javax.swing.JOptionPane;
 
 /**
@@ -131,11 +130,34 @@ public class CambioContrasenaOficial extends javax.swing.JInternalFrame {
         OficialesDTO oficialParaActualizar = oficial.obtenerOficialPorCedula(cedula);
 
         if (oficialParaActualizar != null) {
-            oficial.actualizar2(oficialParaActualizar, antiguaContrasena, nuevaContrasena, confirmarContrasena);
-        } else {
+            if (!oficialParaActualizar.getContrasena().equals(antiguaContrasena)) {
+                JOptionPane.showMessageDialog(this, "La contraseña antigua no es correcta.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-           JOptionPane.showMessageDialog(this, "error al encontrar el usuario");
+            if (!nuevaContrasena.equals(confirmarContrasena)) {
+                JOptionPane.showMessageDialog(this, "La nueva contraseña y la confirmación no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Crear un nuevo objeto OficialesDTO con la nueva contraseña
+            OficialesDTO oficialActualizado = new OficialesDTO(cedula, nuevaContrasena);
+
+            // Actualizar la contraseña en la base de datos
+            if (oficial.actualizar2(oficialActualizado)) {
+                // Actualizar la vista (mostrarTodo)
+                oficial.mostrarTodo();
+
+                // Mostrar mensaje de éxito
+                JOptionPane.showMessageDialog(this, "Contraseña actualizada correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                // Mostrar mensaje de error si la actualización falla
+                JOptionPane.showMessageDialog(this, "No se pudo cambiar la contraseña.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró un usuario con la cédula proporcionada.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_BtnConfirmarActionPerformed
 
 

@@ -6,6 +6,7 @@ package View;
 
 import Controller.Persona.ControllerOficiales;
 import Models.Personas.DTO.OficialesDTO;
+import static View.FrmLicencias.jDesktopPaneLicencias;
 import javax.swing.JOptionPane;
 
 /**
@@ -126,6 +127,9 @@ public class IniciarSesionOficial extends javax.swing.JInternalFrame {
 
         if (oficiall != null) {
             JOptionPane.showMessageDialog(this, "haz ingresado exitosamente", "Inicio de sesión válido", JOptionPane.INFORMATION_MESSAGE);
+            InternalFrameCita a = new InternalFrameCita();
+            jDesktopPaneLicencias.add(a);
+            a.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Cedula o contraseña incorrecta", "Inicio de sesión denegado", JOptionPane.ERROR_MESSAGE);
         }
